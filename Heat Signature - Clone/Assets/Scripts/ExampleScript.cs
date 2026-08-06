@@ -1,5 +1,7 @@
 //Script name should be what it does (PlayerMovement,InventoryManager).
+using Unity.VisualScripting;
 using Unity.VisualScripting.FullSerializer;
+using UnityEngine;
 
 public class ExampleScript 
 {
@@ -16,5 +18,14 @@ public class ExampleScript
         //You don't need to add function before the variable name.
         float functionVariableName = 0f;
         float warningStopper = functionVariableName;
+    }
+
+    [SerializeField] private GameObject _exampleObject;
+    private void UseExampleObject()
+    {
+        if(_exampleObject != null)
+        {
+            _exampleObject.SetActive(true);
+        }
     }
 }
