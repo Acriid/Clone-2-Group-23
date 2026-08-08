@@ -37,7 +37,7 @@ public class MeleeWeapon : Item
 
     //Main camera Cache
     private Camera _mainCamera = null;
-
+    private Pointer _mainPointer = null;
 
 
     //Constants    
@@ -48,6 +48,8 @@ public class MeleeWeapon : Item
     {
         //Cache main camera
         _mainCamera = Camera.main;
+
+        _mainPointer = Pointer.current;
 
         //starts off cooldown
         _itemCooldown = _itemSO.ItemCooldown + 1f;
@@ -162,7 +164,7 @@ public class MeleeWeapon : Item
         while(true)
         {
             Vector2 origin = transform.position;
-            Vector2 mousePosition = Pointer.current.position.ReadValue();
+            Vector2 mousePosition = _mainPointer.position.ReadValue();
 
             //Change Mouse Position To World Position
 
@@ -203,7 +205,7 @@ public class MeleeWeapon : Item
         {
             //Get line variables
             Vector2 origin = transform.position;
-            Vector2 mousePosition = Pointer.current.position.ReadValue();
+            Vector2 mousePosition = _mainPointer.position.ReadValue();
             Vector2 mouseWorldPosition = _mainCamera.ScreenToWorldPoint(mousePosition);
             //Get throw direction
             _throwLine = mouseWorldPosition-origin;
