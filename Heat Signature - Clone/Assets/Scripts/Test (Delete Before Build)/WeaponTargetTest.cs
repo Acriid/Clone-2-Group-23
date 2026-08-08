@@ -7,7 +7,7 @@ public class WeaponTargetTest : MonoBehaviour
     private bool _usingWeapon = true;
     void Start()
     {
-        Weapon.ThrowItem();
+        Weapon.UseItem();
     }
 
     void Update()
@@ -19,7 +19,7 @@ public class WeaponTargetTest : MonoBehaviour
     {
         if(Keyboard.current.spaceKey.wasPressedThisFrame)
         {
-            Weapon.ThrowItem();
+            Weapon.UseItem();
             _usingWeapon = !_usingWeapon;
             Debug.Log($"Using weapon: {_usingWeapon}");
         }        

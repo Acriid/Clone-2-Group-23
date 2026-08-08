@@ -15,5 +15,5 @@ MonoBehaviour:
   ItemDescription: 
   ItemInventorySprite: {fileID: 0}
   ItemRange: 8
-  ItemCooldown: -1
+  ItemCooldown: 0.4
   ItemUsage: -1

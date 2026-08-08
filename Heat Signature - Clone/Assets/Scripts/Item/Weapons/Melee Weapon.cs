@@ -9,7 +9,6 @@ public class MeleeWeapon : Item
     //Coroutine wait times
     [Header("Coroutine Wait Times")]
     [SerializeField] private float _findTargetWaitTime = 0.2f;
-    [SerializeField] private float _throwRoutineWaitTime = 0.2f;
 
 
     //Collision
@@ -34,18 +33,24 @@ public class MeleeWeapon : Item
     //Find target Coroutine variables
     private Coroutine _throwRoutine = null;
     private Vector2 _throwLine = new();
-    //Change later
-    private float _maxLineDistance = 8f;
+
 
     //Main camera Cache
     private Camera _mainCamera = null;
 
+
+
+    //Constants    
     const float ATTACKDETEACTIONWIDTH = 1f;
     const float THROWFORCE = 2f;
 
     void Awake()
     {
+        //Cache main camera
         _mainCamera = Camera.main;
+
+        //starts off cooldown
+        _itemCooldown = _itemSO.ItemCooldown + 1f;
     }
 
 
@@ -91,6 +96,10 @@ public class MeleeWeapon : Item
         {
             _target = null;
         }
+        if(_lineRenderer.positionCount != 0)
+        {
+            ResetLineRenderer();
+        }
 
 
         //Start Cooldown
@@ -125,7 +134,7 @@ public class MeleeWeapon : Item
 
         if(_lineRenderer.positionCount != 0)
         {
-            _lineRenderer.positionCount = 0;
+            ResetLineRenderer();
         }
         
 
@@ -159,6 +168,16 @@ public class MeleeWeapon : Item
 
             Vector2 mouseWorldPosition = _mainCamera.ScreenToWorldPoint(mousePosition);
 
+
+            //Max out distance.
+            
+            float mouseDistance = Vector2.Distance(origin, mouseWorldPosition);
+
+            if(mouseDistance > _itemSO.ItemRange)
+            {
+                mouseWorldPosition = origin + (mouseWorldPosition - origin).normalized * _itemSO.ItemRange;
+            }
+
             Vector2 direction = (mouseWorldPosition - origin).normalized;
             float angle = Vector2.SignedAngle(origin,mouseWorldPosition);
             
@@ -166,7 +185,10 @@ public class MeleeWeapon : Item
 
             RaycastHit2D hit = Physics2D.BoxCast(origin,boxSize,angle,direction,_itemSO.ItemRange,_targetLayerMask);
 
-            _target = hit.collider.gameObject;
+            if(hit.collider != null)
+            {
+                _target = hit.collider.gameObject;  
+            }
 
             yield return waitTime;
         }
@@ -188,9 +210,9 @@ public class MeleeWeapon : Item
 
             float mouseDistance = Vector2.Distance(origin, mouseWorldPosition);
 
-            if(mouseDistance > _maxLineDistance)
+            if(mouseDistance > _itemSO.ItemRange)
             {
-                mouseWorldPosition = origin + (mouseWorldPosition - origin).normalized * _maxLineDistance;
+                mouseWorldPosition = origin + (mouseWorldPosition - origin).normalized * _itemSO.ItemRange;
             }
 
 
@@ -223,5 +245,10 @@ public class MeleeWeapon : Item
     public void ApplyForce(Vector2 direction)
     {
         _weaponRigidBody.AddForce(direction * THROWFORCE,ForceMode2D.Impulse);
+    }
+
+    private void ResetLineRenderer()
+    {
+        _lineRenderer.positionCount = 0;
     }
 }
