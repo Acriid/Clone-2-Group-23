@@ -273,6 +273,9 @@ MonoBehaviour:
   roomWidth: 16
   roomHeight: 9
   moveSpeed: 8
+  cameraHeight: 12
+  tiltAngle: 60
+  forwardOffset: 4
 --- !u!1 &559437289
 GameObject:
   m_ObjectHideFlags: 0
@@ -362,7 +365,31 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5981937761169037781, guid: 8a38c14787990454dac047312ea4f99a, type: 3}
       propertyPath: m_Name
-      value: PlayerCharacter 2
+      value: Heat Signature Character
+      objectReference: {fileID: 0}
+    - target: {fileID: 6513403911886495380, guid: 8a38c14787990454dac047312ea4f99a, type: 3}
+      propertyPath: m_SpriteLibraryAsset
+      value: 
+      objectReference: {fileID: 7108339969198208228, guid: b3f9c819ff270b04c94bcd0c57f8f2ea, type: 3}
+    - target: {fileID: 6971048820520724285, guid: 8a38c14787990454dac047312ea4f99a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -988199316351240381, guid: 7933864434b99ce4196111db29c9e764, type: 3}
+    - target: {fileID: 7568307526028973365, guid: 8a38c14787990454dac047312ea4f99a, type: 3}
+      propertyPath: m_labelHash
+      value: 0.00004203706
+      objectReference: {fileID: 0}
+    - target: {fileID: 7568307526028973365, guid: 8a38c14787990454dac047312ea4f99a, type: 3}
+      propertyPath: m_SpriteHash
+      value: 702323170
+      objectReference: {fileID: 0}
+    - target: {fileID: 7934237416236164930, guid: 8a38c14787990454dac047312ea4f99a, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7934237416236164930, guid: 8a38c14787990454dac047312ea4f99a, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 7934237416236164930, guid: 8a38c14787990454dac047312ea4f99a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -403,6 +430,14 @@ PrefabInstance:
     - target: {fileID: 7934237416236164930, guid: 8a38c14787990454dac047312ea4f99a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8738951989821484921, guid: 8a38c14787990454dac047312ea4f99a, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 4.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 8738951989821484921, guid: 8a38c14787990454dac047312ea4f99a, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 5.8125
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

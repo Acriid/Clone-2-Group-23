@@ -5,20 +5,21 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float movementSpeed = 4f;
-
+    //Private Variables 
     private Rigidbody2D rb;
     private Vector2 moveInput;
     private Animator animator;
+    
+    //Public Variables 
+    public float movementSpeed = 4f;
     public GameObject player;
 
     // Health System
     public int lives = 10;
     public GameObject[] heartSprites;
 
-    // Melee Attack System
+    // Melee Attack System --> Will change to Range/Gun Attack 
     public Transform aim;
-    
     public GameObject melee;
     private bool isAttacking = false;
     public float attackDuration = 0.3f;
@@ -26,7 +27,6 @@ public class PlayerMovement : MonoBehaviour
     
     //KnockBack System 
     private bool isKnockedBack = false;
-
     public float knockbackForce = 8f;
     public float knockbackDuration = 0.2f;
     
@@ -66,10 +66,11 @@ public class PlayerMovement : MonoBehaviour
         {
             return;
         }
-        
+        //Moves Player using RigidBody
         rb.linearVelocity = moveInput * movementSpeed;
     }
 
+    //Function that moves Player 
     public void Move(InputAction.CallbackContext context)
     {
         moveInput = context.ReadValue<Vector2>();
@@ -87,6 +88,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
     
+    //Player Attack Function
     public void Attack(InputAction.CallbackContext context)
     {
         Debug.Log("Attack test");
@@ -96,12 +98,13 @@ public class PlayerMovement : MonoBehaviour
         
         OnAttack();
     }
-
+   
+    //Call Animator to play melee attack, will change to gun attack 
     void OnAttack()
     {
         if (!isAttacking)
         {
-           // MusicManager.Instance.PlaySound(MusicManager.Instance.attackSound);
+          
             melee.SetActive(true);
             isAttacking = true;
             //Call animator to play melee attack here 
@@ -124,6 +127,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    //Function that determines how player character takes damage 
     public void TakeDamage(int damage)
     {
         
@@ -148,6 +152,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
     
+    //Player becomes temporarily invincible to prevent consecutive attacks 
     IEnumerator Invincibility()
     {
         invincible = true;
@@ -157,6 +162,7 @@ public class PlayerMovement : MonoBehaviour
         invincible = false;
     }
     
+    //Player is knocked back when attacked by enemies
     public void Knockback(Vector2 attackerPosition, float force)
     {
         StartCoroutine(KnockbackRoutine(attackerPosition, force));
@@ -178,7 +184,7 @@ public class PlayerMovement : MonoBehaviour
     
     
 
-   
+   //How player can restore lives--> Not used yet 
     public void RestoreLives()
     {
         if (lives < 10)

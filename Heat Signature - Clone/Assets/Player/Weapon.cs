@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
+    //Public Variables 
     public int damage = 1;
 
+    //On trigger function that attacks enemies when weapon collides 
     private void OnTriggerEnter2D(Collider2D col)
     {
         EnemyMovement enemy = col.GetComponent<EnemyMovement>();
@@ -16,13 +18,6 @@ public class Weapon : MonoBehaviour
             Debug.Log("enemy knocked ");
         }
         
-        //Add boss damage 
-        // BossEnemyScript boss = col.GetComponent<BossEnemyScript>();
-        // if (boss != null)
-        // {
-        //     boss.TakeDamage(damage);
-        //     
-        //     
-        // }
+        
     }
 }

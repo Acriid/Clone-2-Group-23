@@ -36,7 +36,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &780097434906531698
 SpriteRenderer:
-  serializedVersion: 2
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -93,6 +93,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+  m_BlendShapeWeights: []
 --- !u!60 &4621341636887211994
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -218,7 +219,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5619538877649975561, guid: f0f63782392f7414993ff28236422877, type: 3}
       propertyPath: m_Name
-      value: PlayerCharacter 2
+      value: Heat Signature Character
       objectReference: {fileID: 0}
     - target: {fileID: 5619538877649975561, guid: f0f63782392f7414993ff28236422877, type: 3}
       propertyPath: m_Layer
@@ -226,7 +227,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7397062885991164346, guid: f0f63782392f7414993ff28236422877, type: 3}
       propertyPath: m_ActionEvents.Array.size
-      value: 13
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 7397062885991164346, guid: f0f63782392f7414993ff28236422877, type: 3}
       propertyPath: m_ActionEvents.Array.data[2].m_ActionId
@@ -271,6 +272,10 @@ PrefabInstance:
     - target: {fileID: 7397062885991164346, guid: f0f63782392f7414993ff28236422877, type: 3}
       propertyPath: m_ActionEvents.Array.data[12].m_ActionId
       value: 69fe8a56-f9ab-49df-9f2a-c9cf7092aa15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7397062885991164346, guid: f0f63782392f7414993ff28236422877, type: 3}
+      propertyPath: m_ActionEvents.Array.data[13].m_ActionId
+      value: c24df0b2-89e6-4338-9858-621c96c84251
       objectReference: {fileID: 0}
     - target: {fileID: 7397062885991164346, guid: f0f63782392f7414993ff28236422877, type: 3}
       propertyPath: m_ActionEvents.Array.data[16].m_ActionId
@@ -319,6 +324,10 @@ PrefabInstance:
     - target: {fileID: 7397062885991164346, guid: f0f63782392f7414993ff28236422877, type: 3}
       propertyPath: m_ActionEvents.Array.data[12].m_ActionName
       value: Player/Attack
+      objectReference: {fileID: 0}
+    - target: {fileID: 7397062885991164346, guid: f0f63782392f7414993ff28236422877, type: 3}
+      propertyPath: m_ActionEvents.Array.data[13].m_ActionName
+      value: 'Player/UseBomb[/Keyboard/e]'
       objectReference: {fileID: 0}
     - target: {fileID: 7397062885991164346, guid: f0f63782392f7414993ff28236422877, type: 3}
       propertyPath: m_ActionEvents.Array.data[16].m_ActionName
