@@ -1,0 +1,639 @@
+fileFormatVersion: 2
+guid: 002f2ce6760260d488d5a6854f6c031a
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1058230972394411207
+    second: spaceship tiles_0
+  - first:
+      213: -6977605244173610308
+    second: spaceship tiles_1
+  - first:
+      213: 8724019333251705934
+    second: spaceship tiles_2
+  - first:
+      213: 2832132782504672870
+    second: spaceship tiles_3
+  - first:
+      213: 3816814395549670313
+    second: spaceship tiles_4
+  - first:
+      213: -3453566574684340467
+    second: spaceship tiles_5
+  - first:
+      213: -522800639314187877
+    second: spaceship tiles_6
+  - first:
+      213: -6760599189299771465
+    second: spaceship tiles_7
+  - first:
+      213: -7897524743855046389
+    second: spaceship tiles_8
+  - first:
+      213: 3232411774296827348
+    second: spaceship tiles_9
+  - first:
+      213: 4353866622169417261
+    second: spaceship tiles_10
+  - first:
+      213: -2460141101893781470
+    second: spaceship tiles_11
+  - first:
+      213: -4899531639541915938
+    second: spaceship tiles_12
+  - first:
+      213: 1219366991090369804
+    second: spaceship tiles_13
+  - first:
+      213: -7080199782104327846
+    second: spaceship tiles_14
+  - first:
+      213: -7070955204111079215
+    second: spaceship tiles_15
+  - first:
+      213: -2279329600383765944
+    second: spaceship tiles_16
+  - first:
+      213: -9154458149886621391
+    second: spaceship tiles_17
+  - first:
+      213: -7734130687217177329
+    second: spaceship tiles_18
+  - first:
+      213: 5489564618595669980
+    second: spaceship tiles_19
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: spaceship tiles_0
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 203
+        width: 56
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c492ef66779fae00800000000000000
+      internalID: 1058230972394411207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spaceship tiles_1
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 203
+        width: 104
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb21126dff09a2f90800000000000000
+      internalID: -6977605244173610308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spaceship tiles_2
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 203
+        width: 104
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4cab1c9c51f11970800000000000000
+      internalID: 8724019333251705934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spaceship tiles_3
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 215
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66efde9a2c1cd4720800000000000000
+      internalID: 2832132782504672870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spaceship tiles_4
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 231
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9abd55c687c08f430800000000000000
+      internalID: 3816814395549670313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spaceship tiles_5
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 234
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0ff6c38f777210d0800000000000000
+      internalID: -3453566574684340467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spaceship tiles_6
+      rect:
+        serializedVersion: 2
+        x: 338
+        y: 199
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b99a455a693aeb8f0800000000000000
+      internalID: -522800639314187877
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spaceship tiles_7
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 199
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b74ef44bd68d22a0800000000000000
+      internalID: -6760599189299771465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spaceship tiles_8
+      rect:
+        serializedVersion: 2
+        x: 386
+        y: 202
+        width: 14
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b0189ad961b566290800000000000000
+      internalID: -7897524743855046389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spaceship tiles_9
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 123
+        width: 88
+        height: 72
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d5a0c6f165dbdc20800000000000000
+      internalID: 3232411774296827348
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spaceship tiles_10
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 28
+        width: 104
+        height: 167
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d2686d500aa0c6c30800000000000000
+      internalID: 4353866622169417261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spaceship tiles_11
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 183
+        width: 14
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2287844c3b2dbddd0800000000000000
+      internalID: -2460141101893781470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spaceship tiles_12
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 167
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ede1153ceed510cb0800000000000000
+      internalID: -4899531639541915938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spaceship tiles_13
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 167
+        width: 9
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0547c261df0ce010800000000000000
+      internalID: 1219366991090369804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spaceship tiles_14
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 168
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a599fd88fc31ebd90800000000000000
+      internalID: -7080199782104327846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spaceship tiles_15
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 135
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d8624494bbeedd90800000000000000
+      internalID: -7070955204111079215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spaceship tiles_16
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 138
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 842b71b0ec13e50e0800000000000000
+      internalID: -2279329600383765944
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spaceship tiles_17
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 103
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 13904d8a0d4d4f080800000000000000
+      internalID: -9154458149886621391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spaceship tiles_18
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 106
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0de8fdfd19daa490800000000000000
+      internalID: -7734130687217177329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spaceship tiles_19
+      rect:
+        serializedVersion: 2
+        x: 371
+        y: 90
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd792f68fe9de2c40800000000000000
+      internalID: 5489564618595669980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5d0fcadcf7a991b42b652ab792239036
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      spaceship tiles_0: 1058230972394411207
+      spaceship tiles_1: -6977605244173610308
+      spaceship tiles_10: 4353866622169417261
+      spaceship tiles_11: -2460141101893781470
+      spaceship tiles_12: -4899531639541915938
+      spaceship tiles_13: 1219366991090369804
+      spaceship tiles_14: -7080199782104327846
+      spaceship tiles_15: -7070955204111079215
+      spaceship tiles_16: -2279329600383765944
+      spaceship tiles_17: -9154458149886621391
+      spaceship tiles_18: -7734130687217177329
+      spaceship tiles_19: 5489564618595669980
+      spaceship tiles_2: 8724019333251705934
+      spaceship tiles_3: 2832132782504672870
+      spaceship tiles_4: 3816814395549670313
+      spaceship tiles_5: -3453566574684340467
+      spaceship tiles_6: -522800639314187877
+      spaceship tiles_7: -6760599189299771465
+      spaceship tiles_8: -7897524743855046389
+      spaceship tiles_9: 3232411774296827348
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
