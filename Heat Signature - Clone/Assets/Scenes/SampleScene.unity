@@ -255,6 +255,7 @@ MonoBehaviour:
   _playerRigidBody: {fileID: 411044546}
   _playerSpeed: 10
   _inputReader: {fileID: 11400000, guid: 4f0898a6c80a89a4ba7b08d85ec2e9cf, type: 2}
+  _timeManager: {fileID: 0}
 --- !u!1 &473888496
 GameObject:
   m_ObjectHideFlags: 0
