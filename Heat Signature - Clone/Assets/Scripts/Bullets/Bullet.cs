@@ -1,16 +1,24 @@
 using System.Collections;
 using System;
 using UnityEngine;
+using Unity.VisualScripting;
 
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private BulletSO _bulletSO = null;
     [SerializeField] private Rigidbody2D _bulletRigidBody = null;
-    private WaitForSeconds _bulletDespawnWaitTime = new(5f);
+
 
     private Coroutine _despawnRoutine;
 
+
+    private float _bulletTimeScale = 1f;
+    private Vector2 _bulletVelocity;
+
+ 
     public event Action<Bullet> OnBulletRemoved;
+
+
     void OnCollisionEnter2D(Collision2D collision)
     {
         if(_bulletSO.PlayerBullet)
@@ -34,21 +42,27 @@ public class Bullet : MonoBehaviour
 
     public void ShootBullet(Vector2 startPosition, Vector2 shootDirection)
     {
-        if(_bulletRigidBody == null) return;
+        if (_bulletRigidBody == null) return;
 
         gameObject.transform.position = startPosition;
         gameObject.transform.right = shootDirection;
 
-        _bulletRigidBody.AddForce(shootDirection * _bulletSO.BulletSpeed,ForceMode2D.Impulse);
-
+        _bulletVelocity = shootDirection * _bulletSO.BulletSpeed;
+        _bulletRigidBody.linearVelocity = _bulletVelocity * _bulletTimeScale;
 
         _despawnRoutine ??= StartCoroutine(DespawnBullet());
     }
 
-
+    public void ChangeBulletTime(float newTime)
+    {
+        _bulletTimeScale = newTime;
+        Debug.Log(_bulletTimeScale);
+        _bulletRigidBody.linearVelocity = _bulletVelocity * _bulletTimeScale;
+    }
+    
     private IEnumerator DespawnBullet()
     {
-        yield return _bulletDespawnWaitTime;
+        yield return new WaitForSeconds(_bulletSO.BulletLifeTime / _bulletTimeScale);
         _despawnRoutine = null;
         OnBulletRemoved?.Invoke(this);
     }

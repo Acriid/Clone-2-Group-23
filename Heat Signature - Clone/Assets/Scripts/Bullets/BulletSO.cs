@@ -4,5 +4,6 @@ using UnityEngine;
 public class BulletSO : ScriptableObject
 {
     public float BulletSpeed = 0f;
+    public float BulletLifeTime = 10f;
     public bool PlayerBullet = true;
 }

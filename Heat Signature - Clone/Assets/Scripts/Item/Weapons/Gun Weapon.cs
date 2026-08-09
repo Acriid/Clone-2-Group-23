@@ -2,13 +2,17 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using System;
+
 
 public class GunWeapon : Item
 {
     [SerializeField] private int _bulletPoolSize = 3;
     [SerializeField] private GameObject _bullet = null;
     [SerializeField] private Transform _shotStartPosition = null;
+    [SerializeField] private TimeManager _timeManager = null;
+
+    private float _bulletTimeScale = 1f;
+
     private Coroutine _bulletPathRoutine = null;
     private Vector2 _mouseDirection = Vector2.zero;
 
@@ -48,6 +52,7 @@ public class GunWeapon : Item
 
 
     }
+
     public override void UseItem()
     {
         //Quick return checks
@@ -109,6 +114,7 @@ public class GunWeapon : Item
 
         instance.OnBulletRemoved += ReturnBullet;
         instance.ShootBullet(_shotStartPosition.position,shootDirection);
+        instance.ChangeBulletTime(_bulletTimeScale);
     }
 
     //Removes bullet after it has hit something or reached the end of its lifetime
@@ -132,6 +138,27 @@ public class GunWeapon : Item
 
             _itemCooldown += Time.deltaTime;
             yield return null;
+        }
+    }
+
+
+
+    private void OnEnable()
+    {
+        _timeManager.OnBulletTimeChange += ChangeBulletTime;
+    }
+
+    private void OnDisable()
+    {
+        _timeManager.OnBulletTimeChange -= ChangeBulletTime;
+    }
+
+    public void ChangeBulletTime(float newTime)
+    {
+        _bulletTimeScale = newTime;
+        foreach(Bullet bullet in _activeBullets)
+        {
+            bullet.ChangeBulletTime(newTime);
         }
     }
 }
