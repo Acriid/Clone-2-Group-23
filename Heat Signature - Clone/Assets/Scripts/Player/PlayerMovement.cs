@@ -1,200 +1,70 @@
 using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    //Private Variables 
-    private Rigidbody2D rb;
-    private Vector2 moveInput;
-    private Animator animator;
-    
-    //Public Variables 
-    public float movementSpeed = 4f;
-    public GameObject player;
+    private Vector2 _moveInput;
 
-    // Health System
-    public int lives = 10;
-    public GameObject[] heartSprites;
+    //Variables that need to be set in unity
+    [SerializeField] private Rigidbody2D _playerRigidBody = null;
+    [SerializeField] private float _playerSpeed = 10f;
+    [SerializeField] private InputReader _inputReader = null;
 
-    // Melee Attack System --> Will change to Range/Gun Attack 
-    public Transform aim;
-    public GameObject melee;
-    private bool isAttacking = false;
-    public float attackDuration = 0.3f;
-    public float attackTimer = 0f;
-    
-    //KnockBack System 
-    private bool isKnockedBack = false;
-    public float knockbackForce = 8f;
-    public float knockbackDuration = 0.2f;
-    
-    //Player Temporary Invincibility
-    private bool invincible = false;
-    public float invincibilityTime = 0.5f;
-    
-    
-    void Start()
+
+    bool _slowMotion = false;
+    private void OnEnable()
     {
-        rb = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
-        melee.SetActive(false);
-    
+        if(_inputReader != null)
+        EnablePlayerMovement();
     }
 
-    
-    void Update()
+    private void OnDisable()
     {
-        // Rotate the aim object to one of 8 directions
-        if (moveInput != Vector2.zero)
-        {
-            float angle = Mathf.Atan2(moveInput.y, moveInput.x) * Mathf.Rad2Deg;
-
-            // Snap to nearest 45 degrees
-            angle = Mathf.Round(angle / 45f) * 45f;
-
-            // If your sword points UP by default, change this to angle + 90
-            aim.rotation = Quaternion.Euler(0f, 0f, angle+90f);
-        }
-        CheckMeleeTimer();
+        if(_inputReader != null)
+        DisablePlayerMovement();
     }
-
     void FixedUpdate()
     {
-        if (isKnockedBack)
-        {
-            return;
-        }
-        //Moves Player using RigidBody
-        rb.linearVelocity = moveInput * movementSpeed;
+        MovePlayer(_moveInput);
     }
 
     //Function that moves Player 
-    public void Move(InputAction.CallbackContext context)
+    private void ReadMoveInput(Vector2 moveInput)
     {
-        moveInput = context.ReadValue<Vector2>();
+        _moveInput = moveInput;
+    }
 
-        bool isWalking = moveInput != Vector2.zero;
-        animator.SetBool("isWalking", isWalking);
+    private void MovePlayer(Vector2 moveInput)
+    {
+        //Input reading can be done here for animations
 
-        animator.SetFloat("InputX", moveInput.x);
-        animator.SetFloat("InputY", moveInput.y);
 
-        if (isWalking)
+        if(_playerRigidBody == null) return;
+
+        if(_slowMotion)
         {
-            animator.SetFloat("LastInputX", moveInput.x);
-            animator.SetFloat("LastInputY", moveInput.y);
+            _playerRigidBody.AddForce(_playerSpeed * moveInput); 
         }
-    }
-    
-    //Player Attack Function
-    public void Attack(InputAction.CallbackContext context)
-    {
-        Debug.Log("Attack test");
-        if (!context.performed)
-            return;
-
-        
-        OnAttack();
-    }
-   
-    //Call Animator to play melee attack, will change to gun attack 
-    void OnAttack()
-    {
-        if (!isAttacking)
+        else
         {
-          
-            melee.SetActive(true);
-            isAttacking = true;
-            //Call animator to play melee attack here 
-            
-            
+            _playerRigidBody.linearVelocity = _playerSpeed * moveInput;
         }
     }
 
-    void CheckMeleeTimer()
+    private void EnablePlayerMovement()
     {
-        if (isAttacking)
-        {
-            attackTimer += Time.deltaTime;
-            if (attackTimer >= attackDuration)
-            {
-                attackTimer = 0;
-                isAttacking = false;
-                melee.SetActive(false);
-            }
-        }
+        _inputReader.EnableMoveAction();
+
+        _inputReader.OnMove += ReadMoveInput;
     }
 
-    //Function that determines how player character takes damage 
-    public void TakeDamage(int damage)
+    private void DisablePlayerMovement()
     {
-        
-        if (lives <= 0 || invincible)
-        {
-            return;
+        _inputReader.DisableMoveAction();
 
-        }
-
-        StartCoroutine(Invincibility());
-
-        lives -= damage;
-        heartSprites[lives].SetActive(false);
-
-        if (lives == 0)
-        {
-            Debug.Log("Player died");
-            //Switch scene here to death screen 
-            player.SetActive(false);
-            Application.Quit();
-            
-        }
-    }
-    
-    //Player becomes temporarily invincible to prevent consecutive attacks 
-    IEnumerator Invincibility()
-    {
-        invincible = true;
-
-        yield return new WaitForSeconds(invincibilityTime);
-
-        invincible = false;
-    }
-    
-    //Player is knocked back when attacked by enemies
-    public void Knockback(Vector2 attackerPosition, float force)
-    {
-        StartCoroutine(KnockbackRoutine(attackerPosition, force));
-    }
-
-    IEnumerator KnockbackRoutine(Vector2 attackerPosition, float force)
-    {
-        isKnockedBack = true;
-
-        Vector2 direction = ((Vector2)transform.position - attackerPosition).normalized;
-
-        rb.linearVelocity = direction * force;
-
-        yield return new WaitForSeconds(knockbackDuration);
-
-        rb.linearVelocity = Vector2.zero;
-        isKnockedBack = false;
-    }
-    
-    
-
-   //How player can restore lives--> Not used yet 
-    public void RestoreLives()
-    {
-        if (lives < 10)
-        {
-            lives = 10;
-
-            foreach (GameObject heart in heartSprites)
-            {
-                heart.SetActive(true);
-            }
-        }
+        _inputReader.OnMove -= ReadMoveInput;
     }
 }

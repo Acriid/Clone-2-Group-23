@@ -9,7 +9,7 @@ public class CameraFollow : MonoBehaviour
     void LateUpdate()
     {
         Vector3 cameraPosition = Player.position;
-        cameraPosition.z = 10f;
+        cameraPosition.z = -10f;
         transform.position = cameraPosition;
     }
 }
