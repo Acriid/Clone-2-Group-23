@@ -10,11 +10,13 @@ public class InputReader : ScriptableObject
     private InputActions _inputActions;   
     private InputAction _moveAction;
     private InputAction _clickAction;
+    private InputAction _spaceAction;
     #endregion
 
     #region public Event Action Variables
     public event Action<Vector2> OnMove;
     public event Action OnClick;
+    public event Action OnSpace;
     #endregion
 
     #region Action Variables
@@ -22,6 +24,8 @@ public class InputReader : ScriptableObject
     private Action<InputAction.CallbackContext> moveCancelled; 
 
     private Action<InputAction.CallbackContext> clickPerformed;
+
+    private Action<InputAction.CallbackContext> spacePerformed;
     #endregion
 
     void OnEnable()
@@ -44,6 +48,8 @@ public class InputReader : ScriptableObject
         _moveAction = _inputActions.Player.Move;
 
         _clickAction = _inputActions.UI.Click;
+
+        _spaceAction = _inputActions.Player.Jump;
     }
     private void InitializePlayerEvents()
     {

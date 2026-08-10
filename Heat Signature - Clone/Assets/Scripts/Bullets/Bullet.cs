@@ -56,7 +56,6 @@ public class Bullet : MonoBehaviour
     public void ChangeBulletTime(float newTime)
     {
         _bulletTimeScale = newTime;
-        Debug.Log(_bulletTimeScale);
         _bulletRigidBody.linearVelocity = _bulletVelocity * _bulletTimeScale;
     }
     
