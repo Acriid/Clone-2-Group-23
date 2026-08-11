@@ -15,11 +15,11 @@ public class Enemy : MonoBehaviour
     private NavMeshAgent agent;
     private Rigidbody2D rb;
 
-    // Weapon functionality
+    [Header("Weapon Functionality")] 
     public Transform aim;
     public bool isWalking = false;
 
-    [Header("Facing")]
+    [Header("Facing correct direction")]
     public float rotationSpeed = 10f; // how quickly it turns to face movement, 0 = instant
 
     private void Awake()

@@ -10,7 +10,8 @@ public class FieldOfView : MonoBehaviour
     //Makes Range a slider to adjust
     public float angle;
 
-    //Reference to player / object to search for
+    
+    [Header("Reference to Player/ Object to Search for")] 
     public GameObject playerRef;
 
     public LayerMask targetMask;
