@@ -1,0 +1,57 @@
+using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+//Parent class for other scripts to use
+public abstract class Item : MonoBehaviour
+{
+    //ItemSO gets set in inspector
+    [SerializeField] protected ItemSO _itemSO;
+    // Inventory that will receive this item.
+    [SerializeField] private Inventory _inventory;
+
+
+    //Public getter and setter for _itemSO
+    public ItemSO ItemSO 
+    {
+        get {return _itemSO;}
+        set {_itemSO = value;}
+    }
+    public virtual void UseItem(){}
+    public virtual void ThrowItem(){}
+    public virtual void DropItem(){}
+    
+  
+  /// These functions are simple,so from here on will be deleted once ive worked on the gadget machenic on picking the object.
+    // Picks up this item.
+    public virtual void PickUpItem()
+    {
+        if (_inventory == null)
+        {
+            Debug.LogWarning("Inventory has not been assigned.");
+            return;
+        }
+
+        bool itemAdded = _inventory.AddItem(this);
+
+        if (itemAdded)
+        {
+            gameObject.SetActive(false);
+        }
+        else
+        {
+            Debug.Log("Inventory is full.");
+        }
+    }
+
+    // Checks if the mouse is hovering over the item.
+    private void OnMouseOver()
+    {
+        if (Keyboard.current != null &&
+            Keyboard.current.eKey.wasPressedThisFrame)
+        {
+            PickUpItem();
+        }
+    }
+
+}
