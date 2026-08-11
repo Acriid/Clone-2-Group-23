@@ -8,12 +8,12 @@ public class GunTargetTest : MonoBehaviour
     private bool _usingWeapon = false;
     void OnEnable()
     {
-        InputReader.OnClick += ShootGun;
+        InputReader.OnLeftClick += ShootGun;
         InputReader.EnableClickAction();
     }
     void OnDisable()
     {
-        InputReader.OnClick -= ShootGun;
+        InputReader.OnLeftClick -= ShootGun;
         InputReader.DisableClickAction();
     }
     private void ShootGun()
