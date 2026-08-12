@@ -1,0 +1,767 @@
+fileFormatVersion: 2
+guid: d2bbc9bf78b57b6428b9f210023595c5
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 502693280289036739
+    second: ship stuff tiles_0
+  - first:
+      213: -5437297045589822286
+    second: ship stuff tiles_1
+  - first:
+      213: -4995238761466042848
+    second: ship stuff tiles_2
+  - first:
+      213: -7569560919966609397
+    second: ship stuff tiles_3
+  - first:
+      213: 4391315308509370003
+    second: ship stuff tiles_4
+  - first:
+      213: 2077269924701436205
+    second: ship stuff tiles_5
+  - first:
+      213: -1735934908131876959
+    second: ship stuff tiles_6
+  - first:
+      213: 2706288381358840108
+    second: ship stuff tiles_7
+  - first:
+      213: 9027496971087550936
+    second: ship stuff tiles_8
+  - first:
+      213: -7378806114432069726
+    second: ship stuff tiles_9
+  - first:
+      213: 3313778514623820388
+    second: ship stuff tiles_10
+  - first:
+      213: 515105813682195030
+    second: ship stuff tiles_11
+  - first:
+      213: 4656762604541888602
+    second: ship stuff tiles_12
+  - first:
+      213: 8475955016911423314
+    second: ship stuff tiles_13
+  - first:
+      213: -8343816377126096061
+    second: ship stuff tiles_14
+  - first:
+      213: -5931999447936182807
+    second: ship stuff tiles_15
+  - first:
+      213: 4031945247702842502
+    second: ship stuff tiles_16
+  - first:
+      213: 1543021916962203734
+    second: ship stuff tiles_17
+  - first:
+      213: -1076598173687417205
+    second: ship stuff tiles_18
+  - first:
+      213: 1665308312567826192
+    second: ship stuff tiles_19
+  - first:
+      213: 2822003464754085761
+    second: ship stuff tiles_20
+  - first:
+      213: 4147291403985512881
+    second: ship stuff tiles_21
+  - first:
+      213: 4484224399489774790
+    second: ship stuff tiles_22
+  - first:
+      213: 8903147927655821628
+    second: ship stuff tiles_23
+  - first:
+      213: 1332503642315543804
+    second: ship stuff tiles_24
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ship stuff tiles_0
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 271
+        width: 18
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c99a9200ece9f600800000000000000
+      internalID: 502693280289036739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ship stuff tiles_1
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 267
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b476532527da84b0800000000000000
+      internalID: -5437297045589822286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ship stuff tiles_2
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 268
+        width: 15
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 026ed86ffc85daab0800000000000000
+      internalID: -4995238761466042848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ship stuff tiles_3
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 270
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b0016b3d27483f690800000000000000
+      internalID: -7569560919966609397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ship stuff tiles_4
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 268
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3969f64c10611fc30800000000000000
+      internalID: 4391315308509370003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ship stuff tiles_5
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 251
+        width: 50
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d297e6c9df1f3dc10800000000000000
+      internalID: 2077269924701436205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ship stuff tiles_6
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 251
+        width: 50
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1af599ff568b8e7e0800000000000000
+      internalID: -1735934908131876959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ship stuff tiles_7
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 251
+        width: 18
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c2919aeb1faae8520800000000000000
+      internalID: 2706288381358840108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ship stuff tiles_8
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 254
+        width: 16
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d9969c5aac184d70800000000000000
+      internalID: 9027496971087550936
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ship stuff tiles_9
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 254
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2afcbcafee6399990800000000000000
+      internalID: -7378806114432069726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ship stuff tiles_10
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 253
+        width: 18
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 462797c7008ecfd20800000000000000
+      internalID: 3313778514623820388
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ship stuff tiles_11
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 219
+        width: 18
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65a04462206062700800000000000000
+      internalID: 515105813682195030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ship stuff tiles_12
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 235
+        width: 16
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a58ca0f8ae420a040800000000000000
+      internalID: 4656762604541888602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ship stuff tiles_13
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 240
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 257023b2e24a0a570800000000000000
+      internalID: 8475955016911423314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ship stuff tiles_14
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 236
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 343ff42663fc43c80800000000000000
+      internalID: -8343816377126096061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ship stuff tiles_15
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 219
+        width: 15
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e553f16eed4dada0800000000000000
+      internalID: -5931999447936182807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ship stuff tiles_16
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 219
+        width: 17
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 68cf62337d854f730800000000000000
+      internalID: 4031945247702842502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ship stuff tiles_17
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 220
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 658ac29124ae96510800000000000000
+      internalID: 1543021916962203734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ship stuff tiles_18
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 211
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b86f6834aa72f01f0800000000000000
+      internalID: -1076598173687417205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ship stuff tiles_19
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 220
+        width: 18
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0174c1c461d5c1710800000000000000
+      internalID: 1665308312567826192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ship stuff tiles_20
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 204
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18fb6971335c92720800000000000000
+      internalID: 2822003464754085761
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ship stuff tiles_21
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 190
+        width: 66
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b966920f832e8930800000000000000
+      internalID: 4147291403985512881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ship stuff tiles_22
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 204
+        width: 11
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c43ab8355a2b3e30800000000000000
+      internalID: 4484224399489774790
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ship stuff tiles_23
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 187
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c313eaa8ed55e8b70800000000000000
+      internalID: 8903147927655821628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ship stuff tiles_24
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 173
+        width: 18
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf4d126b0010e7210800000000000000
+      internalID: 1332503642315543804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      ship stuff tiles_0: 502693280289036739
+      ship stuff tiles_1: -5437297045589822286
+      ship stuff tiles_10: 3313778514623820388
+      ship stuff tiles_11: 515105813682195030
+      ship stuff tiles_12: 4656762604541888602
+      ship stuff tiles_13: 8475955016911423314
+      ship stuff tiles_14: -8343816377126096061
+      ship stuff tiles_15: -5931999447936182807
+      ship stuff tiles_16: 4031945247702842502
+      ship stuff tiles_17: 1543021916962203734
+      ship stuff tiles_18: -1076598173687417205
+      ship stuff tiles_19: 1665308312567826192
+      ship stuff tiles_2: -4995238761466042848
+      ship stuff tiles_20: 2822003464754085761
+      ship stuff tiles_21: 4147291403985512881
+      ship stuff tiles_22: 4484224399489774790
+      ship stuff tiles_23: 8903147927655821628
+      ship stuff tiles_24: 1332503642315543804
+      ship stuff tiles_3: -7569560919966609397
+      ship stuff tiles_4: 4391315308509370003
+      ship stuff tiles_5: 2077269924701436205
+      ship stuff tiles_6: -1735934908131876959
+      ship stuff tiles_7: 2706288381358840108
+      ship stuff tiles_8: 9027496971087550936
+      ship stuff tiles_9: -7378806114432069726
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
