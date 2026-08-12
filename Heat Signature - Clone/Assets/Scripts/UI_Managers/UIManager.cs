@@ -18,38 +18,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TMP_Text _itemName;
     [SerializeField] private TMP_Text _itemDescription;
     [SerializeField] private TMP_Text _itemEffect;
-    [SerializeField] private TMP_Text[] _itemNames;
-
-
-    // Functions.
-
-    private void Update()
-    {
-        // Press Space to open or close the inventory.
-        if (Keyboard.current != null &&
-            Keyboard.current.spaceKey.wasPressedThisFrame)
-        {
-            ToggleInventory();
-        }
-    }
-
-
-    // Opens or closes the inventory.
-    private void ToggleInventory()
-    {
-        if (_inventoryPanel != null)
-        {
-            bool inventoryIsOpen = _inventoryPanel.activeSelf;
-
-            _inventoryPanel.SetActive(!inventoryIsOpen);
-
-            // Hide item information when closing the inventory.
-            if (inventoryIsOpen)
-            {
-                HideItemInformation();
-            }
-        }
-    }
+    [SerializeField] private TMP_Text[] _itemNames = new TMP_Text[8];
+    [SerializeField] private GameObject triggerButton;
+   
+   
     private void UpdateInventoryNames()
 {
     if (_inventory == null)
@@ -102,6 +74,13 @@ public class UIManager : MonoBehaviour
         }
     }
 }
+
+
+    public void ShowButton()
+    {
+        // Your UI button logic here
+        triggerButton.SetActive(true);
+    }
 
 
     // Displays information for the selected item.

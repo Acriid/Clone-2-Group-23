@@ -26,61 +26,8 @@ public abstract class Item : MonoBehaviour
     public virtual void DropItem(){}
     
   
-  /// These functions are simple,so from here on will be deleted once ive worked on the gadget machenic on picking the object.
-    // Picks up this item.
-
-    void Start()
-    {
-        _inventory = FindFirstObjectByType<Inventory>();
-    }
-
-    //it checks if E was pressed and that the item was picked up.
-     private void Update()
-    {
-        if (Keyboard.current != null &&
-            Keyboard.current.eKey.wasPressedThisFrame)
-        {
-            PickUpItem();
-        }
-    }
-    public virtual void PickUpItem()
-    {
-         if (_inventory == null)
-        {
-            Debug.LogWarning("No Inventory found in the scene.");
-            return;
-        }
-
-        if (_itemSO == null)
-        {
-            Debug.LogWarning("No ItemSO assigned to this item.");
-            return;
-        }
-
-        bool itemAdded = _inventory.AddItem(this);
-
-        if (itemAdded)
-        {
-            Debug.Log("Item picked up.");
-
-            // Hide the world object.
-            gameObject.SetActive(false);
-        }
-        else
-        {
-            Debug.Log("Inventory is full.");
-        }
-    
-    }
-
-    // Checks if the mouse is hovering over the item.
-    private void OnMouseOver()
-    {
-        if (Keyboard.current != null &&
-            Keyboard.current.eKey.wasPressedThisFrame)
-        {
-            PickUpItem();
-        }
-    }
+  
+     
+   
 
 }
