@@ -253,4 +253,9 @@ public class MeleeWeapon : Item
     {
         _lineRenderer.positionCount = 0;
     }
+
+    public float GetMeleeRange()
+    {
+        return _itemSO.ItemRange;
+    }
 }

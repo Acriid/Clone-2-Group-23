@@ -54,6 +54,8 @@ public class InputReader : ScriptableObject
         _leftClickAction = _inputActions.UI.Click;
 
         _spaceAction = _inputActions.Player.Jump;
+
+        _interactAction = _inputActions.Player.Interact;
     }
     private void InitializePlayerEvents()
     {
@@ -63,6 +65,8 @@ public class InputReader : ScriptableObject
         leftClickPerformed = ctx => OnLeftClick?.Invoke();
 
         spacePerformed = ctx => OnSpace?.Invoke();
+
+        interactPerformed = ctx => OnInteract?.Invoke();
     }
 
     #region Subscribe/UnSubscribe
@@ -75,6 +79,8 @@ public class InputReader : ScriptableObject
         _leftClickAction.performed += leftClickPerformed;
 
         _spaceAction.performed += spacePerformed;
+
+        _interactAction.performed += interactPerformed;
     }
     public void UnSubscribePlayerActions()
     {
@@ -84,6 +90,8 @@ public class InputReader : ScriptableObject
         _leftClickAction.performed -= leftClickPerformed;
 
         _spaceAction.performed -= spacePerformed;
+
+        _interactAction.performed -= interactPerformed;
     }
     #endregion
 
@@ -116,6 +124,16 @@ public class InputReader : ScriptableObject
     public void DisableSpaceAction()
     {
         _spaceAction.Disable();
+    }
+    #endregion
+    #region Interact action
+    public void EnableInteractAction()
+    {
+        _interactAction.Enable();
+    }
+    public void DisableInteractAction()
+    {
+        _interactAction.Disable();
     }
     #endregion
     #endregion
