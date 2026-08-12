@@ -10,7 +10,7 @@ public class EnemyAttack : MonoBehaviour
 
     [Header("Detection")]
     public FieldOfView fov;
-    public float meleeRange = 1.5f;
+    //public float meleeRange = 1.5f;
 
     [Header("Long Range/Bullet Attack")]
     public Transform Aim;
@@ -19,9 +19,13 @@ public class EnemyAttack : MonoBehaviour
     public float shootCooldown = 0.25f;
     private float shootTimer = 0f;
 
+    [Header("Calling Melee Weapon and Gun Weapon Scripts")]
+    public GunWeapon longAttack;
+    public MeleeWeapon shortAttack;
+
     void Update()
     {
-        CheckMeleeTimer();
+       CheckMeleeTimer();
         shootTimer += Time.deltaTime;
 
         if (fov == null || fov.playerRef == null || !fov.canSeePlayer)
@@ -29,13 +33,21 @@ public class EnemyAttack : MonoBehaviour
 
         float distance = Vector2.Distance(transform.position, fov.playerRef.transform.position);
 
-        if (distance <= meleeRange)
+        if (distance <= shortAttack.GetMeleeRange())
         {
             PerformMeleeAttack();
+            //Call player melee swing/ attack animation here 
         }
         else
         {
-            PerformShootAttack();
+           // PerformShootAttack();
+           if (shootTimer >= shootCooldown)
+           {
+               shootTimer = 0f;
+               Vector2 directionToPlayer = (fov.playerRef.transform.position - Aim.position).normalized;
+               longAttack.ShootBulletEnemy(directionToPlayer);
+           }
+           
         }
     }
 
