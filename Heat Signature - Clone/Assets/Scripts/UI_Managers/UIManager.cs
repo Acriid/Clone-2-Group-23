@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour
 
     // Inventory panel.
     [SerializeField] private GameObject _inventoryPanel;
+    [SerializeField] private Inventory _inventory;
 
     // Item information panel.
     [SerializeField] private GameObject _itemInformationPanel;
@@ -17,6 +18,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TMP_Text _itemName;
     [SerializeField] private TMP_Text _itemDescription;
     [SerializeField] private TMP_Text _itemEffect;
+    [SerializeField] private TMP_Text[] _itemNames;
 
 
     // Functions.
@@ -48,6 +50,58 @@ public class UIManager : MonoBehaviour
             }
         }
     }
+    private void UpdateInventoryNames()
+{
+    if (_inventory == null)
+    {
+        return;
+    }
+
+    for (int i = 0; i < _itemNames.Length; i++)
+    {
+        Item item = _inventory.GetItem(i);
+
+        if (item != null)
+        {
+            if (item.gameObject.name.Contains("Longblade"))
+            {
+                _itemNames[i].text = "LONGBLADE";
+            }
+            else if (item.gameObject.name.Contains("Concussion"))
+            {
+                _itemNames[i].text = "CONCUSSION HAMMER";
+            }
+            else if (item.gameObject.name.Contains("Shortblade"))
+            {
+                _itemNames[i].text = "SHORTBLADE";
+            }
+            else if (item.gameObject.name.Contains("Gun"))
+            {
+                _itemNames[i].text = "GUN";
+            }
+            else if (item.gameObject.name.Contains("Visitor"))
+            {
+                _itemNames[i].text = "VISITOR";
+            }
+            else if (item.gameObject.name.Contains("Sidewinder"))
+            {
+                _itemNames[i].text = "SIDEWINDER";
+            }
+            else if (item.gameObject.name.Contains("Swapper"))
+            {
+                _itemNames[i].text = "SWAPPER";
+            }
+            else if (item.gameObject.name.Contains("Slipstream"))
+            {
+                _itemNames[i].text = "SLIPSTREAM";
+            }
+        }
+        else
+        {
+            _itemNames[i].text = "";
+        }
+    }
+}
 
 
     // Displays information for the selected item.

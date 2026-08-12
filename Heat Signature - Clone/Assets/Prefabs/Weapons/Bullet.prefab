@@ -172,3 +172,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Bullet
   _bulletSO: {fileID: 11400000, guid: adb62b4f01172394c914df60e4cc27d7, type: 2}
   _bulletRigidBody: {fileID: 5184157387579811980}
+  _timeManager: {fileID: 11400000, guid: b375a5a6240b68f4bbd62571c4e2c830, type: 2}

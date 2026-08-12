@@ -5,11 +5,6 @@ public class GadgetTest : MonoBehaviour
 {
     public Slipstream Gun;
     private bool _usingWeapon = true;
-    void Start()
-    {
-        Gun.UseItem();
-    }
-
     void Update()
     {
         ThrowCheck();
