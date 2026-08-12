@@ -258,4 +258,14 @@ public class MeleeWeapon : Item
     {
         return _itemSO.ItemRange;
     }
+
+    private IEnumerator DashToTarget()
+    {
+        float elapsedTime = 0f;
+        while(elapsedTime < 0.5f)
+        {
+            
+            yield return null;
+        }
+    }
 }
