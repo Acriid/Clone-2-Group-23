@@ -106,6 +106,17 @@ public class GunWeapon : Item
         }
     }
 
+    public void ShootBulletEnemy(Vector2 shootDirection)
+    {
+        Bullet instance = _bulletPool.Get();
+
+        _activeBullets.Add(instance);
+
+        instance.OnBulletRemoved += ReturnBullet;
+        instance.ShootBullet(_shotStartPosition.position,shootDirection);
+        instance.ChangeBulletTime(_bulletTimeScale);
+    }
+    
     private void ShootBullet(Vector2 shootDirection)
     {
         Bullet instance = _bulletPool.Get();
