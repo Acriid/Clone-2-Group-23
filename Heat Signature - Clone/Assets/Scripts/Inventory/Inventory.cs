@@ -62,6 +62,9 @@ public class Inventory : MonoBehaviour
         }
 
         return _inventorySlots[slotIndex];
+        Debug.Log("Item in slot " + slotIndex + ": " + _inventorySlots[slotIndex]);
+        
+        
     }
 
     // Gets the item assigned to Slot 1.
