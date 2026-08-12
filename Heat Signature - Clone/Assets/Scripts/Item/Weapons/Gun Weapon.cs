@@ -9,8 +9,6 @@ public class GunWeapon : Item
     [SerializeField] private int _bulletPoolSize = 3;
     [SerializeField] private GameObject _bullet = null;
     [SerializeField] private Transform _shotStartPosition = null;
-    [SerializeField] private TimeManager _timeManager = null;
-
     private float _bulletTimeScale = 1f;
 
     private Coroutine _bulletPathRoutine = null;
