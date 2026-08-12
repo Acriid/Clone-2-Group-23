@@ -32,6 +32,7 @@ public class MeleeWeapon : Item
 
     //Find target Coroutine variables
     private Coroutine _throwRoutine = null;
+    private Coroutine _linearDampeningRoutine = null;
     private Vector2 _throwLine = new();
 
 
@@ -41,7 +42,7 @@ public class MeleeWeapon : Item
 
     //Constants    
     const float ATTACKDETEACTIONWIDTH = 1f;
-    const float THROWFORCE = 2f;
+    const float THROWFORCE = 4f;
 
     void Awake()
     {
@@ -264,7 +265,26 @@ public class MeleeWeapon : Item
     /// <param name="direction">Direction to throw object</param>
     public void ApplyForce(Vector2 direction)
     {
-        _weaponRigidBody.AddForce(direction * THROWFORCE,ForceMode2D.Impulse);
+        _weaponRigidBody.linearVelocity = direction * THROWFORCE;
+        
+        if(_linearDampeningRoutine == null)
+        {
+            StartCoroutine(ApplyLinearDamping());
+        }
+        else
+        {
+            StopCoroutine(_linearDampeningRoutine);
+            _linearDampeningRoutine = null;
+        }
+    }
+
+    private IEnumerator ApplyLinearDamping()
+    {
+        while (_weaponRigidBody.linearVelocity.sqrMagnitude > 0.0001f)
+        {
+            yield return new WaitForFixedUpdate();
+            _weaponRigidBody.linearVelocity *= 1.0f / (1.0f + Time.fixedDeltaTime * _weaponRigidBody.linearDamping * _timeVariable);
+        }
     }
 
     private void ResetLineRenderer()
@@ -292,5 +312,17 @@ public class MeleeWeapon : Item
             }
             yield return null;
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (!collision.gameObject.CompareTag("Wall")) return;
+
+        Vector2 incomingVelocity = _weaponRigidBody.linearVelocity;
+        Vector2 wallNormal = collision.GetContact(0).normal;
+
+        Vector2 reflectedVelocity = Vector2.Reflect(incomingVelocity, wallNormal);
+
+        _weaponRigidBody.linearVelocity = reflectedVelocity;
     }
 }

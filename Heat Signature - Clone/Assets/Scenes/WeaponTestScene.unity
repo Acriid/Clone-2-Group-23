@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 81111469}
   m_Layer: 0
   m_Name: Square (3)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -450,12 +450,17 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 558585216}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 51ce8b9aeb34bab40b53e9e72473b832, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GunWeapon
   _itemSO: {fileID: 11400000, guid: 1f620401d3df2de49b151d300a15db76, type: 2}
+  _inventory: {fileID: 0}
+  _itemInformationPanel: {fileID: 0}
+  _parentObject: {fileID: 0}
+  _enemyItem: 0
+  _timeManager: {fileID: 0}
   _bulletPoolSize: 3
   _bullet: {fileID: 2189404069569578541, guid: 19da01928415f334c9b7aff218ef6db7, type: 3}
   _shotStartPosition: {fileID: 558585219}
@@ -528,7 +533,7 @@ Transform:
   m_GameObject: {fileID: 558585216}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.40276, y: -0.13177, z: 0}
+  m_LocalPosition: {x: -5.35, y: -4.29, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -541,11 +546,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 558585216}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 064b09afcef4780458bc69866cfbba11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GunTargetTest
+  InputReader: {fileID: 0}
   Gun: {fileID: 558585217}
 --- !u!1 &735419425
 GameObject:
@@ -561,7 +567,7 @@ GameObject:
   - component: {fileID: 735419427}
   m_Layer: 0
   m_Name: Square
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -728,7 +734,7 @@ GameObject:
   - component: {fileID: 924808069}
   m_Layer: 0
   m_Name: Square (1)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -895,6 +901,7 @@ GameObject:
   - component: {fileID: 1460393213}
   - component: {fileID: 1460393218}
   - component: {fileID: 1460393219}
+  - component: {fileID: 1460393220}
   m_Layer: 0
   m_Name: TestWeapon
   m_TagString: Untagged
@@ -968,7 +975,7 @@ Rigidbody2D:
   m_LinearDamping: 1
   m_AngularDamping: 0.7
   m_GravityScale: 0
-  m_Material: {fileID: 6200000, guid: b76f05809ed97174293e92df1e7cd818, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1048,7 +1055,7 @@ Transform:
   m_GameObject: {fileID: 1460393212}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.62, y: -4.31, z: 0}
+  m_LocalPosition: {x: 0.09, y: -0.36, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1067,6 +1074,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MeleeWeapon
   _itemSO: {fileID: 11400000, guid: 47bdab347b0c21b46a86c293b36d417b, type: 2}
+  _inventory: {fileID: 0}
+  _itemInformationPanel: {fileID: 0}
+  _parentObject: {fileID: 0}
+  _enemyItem: 0
+  _timeManager: {fileID: 0}
   _findTargetWaitTime: 0.2
   _weaponRigidBody: {fileID: 1460393214}
   _weaponCollider: {fileID: 1460393213}
@@ -1187,6 +1199,19 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
+--- !u!114 &1460393220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1460393212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1caf8f8edf1c76149a8fb7952dd17ae3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponTargetTest
+  Weapon: {fileID: 1460393218}
 --- !u!1 &1870327114
 GameObject:
   m_ObjectHideFlags: 0
@@ -1201,7 +1226,7 @@ GameObject:
   - component: {fileID: 1870327116}
   m_Layer: 0
   m_Name: Square (2)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
