@@ -253,4 +253,19 @@ public class MeleeWeapon : Item
     {
         _lineRenderer.positionCount = 0;
     }
+
+    public float GetMeleeRange()
+    {
+        return _itemSO.ItemRange;
+    }
+
+    private IEnumerator DashToTarget()
+    {
+        float elapsedTime = 0f;
+        while(elapsedTime < 0.5f)
+        {
+            
+            yield return null;
+        }
+    }
 }
