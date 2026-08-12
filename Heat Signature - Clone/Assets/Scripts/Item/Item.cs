@@ -9,7 +9,8 @@ public abstract class Item : MonoBehaviour
     [SerializeField] protected ItemSO _itemSO;
     // Inventory that will receive this item.
     [SerializeField] private Inventory _inventory;
-
+    [SerializeField] private GameObject _itemInformationPanel;
+    
 
     //Public getter and setter for _itemSO
     public ItemSO ItemSO 
@@ -17,6 +18,9 @@ public abstract class Item : MonoBehaviour
         get {return _itemSO;}
         set {_itemSO = value;}
     }
+
+    public GameObject ItemInformationPanel { get => _itemInformationPanel; set => _itemInformationPanel = value; }
+
     public virtual void UseItem(){}
     public virtual void ThrowItem(){}
     public virtual void DropItem(){}
@@ -24,11 +28,32 @@ public abstract class Item : MonoBehaviour
   
   /// These functions are simple,so from here on will be deleted once ive worked on the gadget machenic on picking the object.
     // Picks up this item.
+
+    void Start()
+    {
+        _inventory = FindFirstObjectByType<Inventory>();
+    }
+
+    //it checks if E was pressed and that the item was picked up.
+     private void Update()
+    {
+        if (Keyboard.current != null &&
+            Keyboard.current.eKey.wasPressedThisFrame)
+        {
+            PickUpItem();
+        }
+    }
     public virtual void PickUpItem()
     {
-        if (_inventory == null)
+         if (_inventory == null)
         {
-            Debug.LogWarning("Inventory has not been assigned.");
+            Debug.LogWarning("No Inventory found in the scene.");
+            return;
+        }
+
+        if (_itemSO == null)
+        {
+            Debug.LogWarning("No ItemSO assigned to this item.");
             return;
         }
 
@@ -36,12 +61,16 @@ public abstract class Item : MonoBehaviour
 
         if (itemAdded)
         {
+            Debug.Log("Item picked up.");
+
+            // Hide the world object.
             gameObject.SetActive(false);
         }
         else
         {
             Debug.Log("Inventory is full.");
         }
+    
     }
 
     // Checks if the mouse is hovering over the item.
