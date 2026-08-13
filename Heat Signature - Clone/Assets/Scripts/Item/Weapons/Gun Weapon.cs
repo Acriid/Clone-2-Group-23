@@ -9,8 +9,6 @@ public class GunWeapon : Item
     [SerializeField] private int _bulletPoolSize = 3;
     [SerializeField] private GameObject _bullet = null;
     [SerializeField] private Transform _shotStartPosition = null;
-    [SerializeField] private TimeManager _timeManager = null;
-
     private float _bulletTimeScale = 1f;
 
     private Coroutine _bulletPathRoutine = null;
@@ -88,6 +86,38 @@ public class GunWeapon : Item
 
         StartCoroutine(CooldownClock());
     }
+    public void UseItem(Vector2 shootDirection)
+    {
+        //Quick return checks
+        if(_usageLeft <= 0) return;
+        if(_itemCooldown < _itemSO.ItemCooldown) return;
+
+        //First use case.
+        if(_bulletPathRoutine == null)
+        {
+            _bulletPathRoutine = StartCoroutine(BulletPath());
+            return;
+        }
+
+
+        //No direction found
+        if(shootDirection == Vector2.zero)
+        {
+            return;
+        }
+
+        ShootBulletEnemy(shootDirection);
+
+
+        if(_bulletPathRoutine != null)
+        {
+            StopCoroutine(_bulletPathRoutine);
+            _bulletPathRoutine = null;
+        }
+
+        StartCoroutine(CooldownClock());
+    }
+
 
     private IEnumerator BulletPath()
     {

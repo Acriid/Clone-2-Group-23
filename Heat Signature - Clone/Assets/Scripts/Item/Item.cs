@@ -10,6 +10,14 @@ public abstract class Item : MonoBehaviour
     // Inventory that will receive this item.
     [SerializeField] private Inventory _inventory;
     [SerializeField] private GameObject _itemInformationPanel;
+    [SerializeField] protected GameObject _parentObject;
+
+    //Time Manager
+    [SerializeField] protected bool _enemyItem = false;
+    [SerializeField] protected TimeManager _timeManager = null;
+
+
+    protected float _timeVariable = 1f;
     
 
     //Public getter and setter for _itemSO

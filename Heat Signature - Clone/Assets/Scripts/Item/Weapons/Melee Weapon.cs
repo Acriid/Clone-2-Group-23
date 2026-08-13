@@ -39,7 +39,6 @@ public class MeleeWeapon : Item
     private Camera _mainCamera = null;
     private Pointer _mainPointer = null;
 
-
     //Constants    
     const float ATTACKDETEACTIONWIDTH = 1f;
     const float THROWFORCE = 2f;
@@ -56,9 +55,20 @@ public class MeleeWeapon : Item
     }
 
 
-
-
-
+    void OnEnable()
+    {
+        if(_timeManager != null)
+        _timeManager.OnEnemyTimeChange += ChangeTimeVariable;
+    }
+    void OnDisable()
+    {
+        if(_timeManager != null)
+        _timeManager.OnEnemyTimeChange += ChangeTimeVariable;
+    }
+    private void ChangeTimeVariable(float newValue)
+    {
+        _timeVariable = newValue;
+    }
     /// <summary>
     /// UseItem is called twice, once to find a target, twice to act upon target found
     /// </summary>
@@ -113,6 +123,8 @@ public class MeleeWeapon : Item
     /// </summary>
     public override void ThrowItem()
     {
+        //TODO- Change to be time dependent
+
         //First use check
         if(_throwRoutine == null)
         {
@@ -195,6 +207,7 @@ public class MeleeWeapon : Item
             yield return waitTime;
         }
     }
+    //TODO - Change to be time dependent
     private IEnumerator ThrowItemPath()
     {
         _lineRenderer.positionCount = 2;
@@ -233,9 +246,14 @@ public class MeleeWeapon : Item
         _itemCooldown = 0f;
         while(_itemCooldown < _itemSO.ItemCooldown)
         {
-            //TODO- Add variable to change cooldown time when in slipstream or shadow map.
-
-            _itemCooldown += Time.deltaTime;
+            if(_enemyItem)
+            {
+                _itemCooldown += Time.deltaTime * _timeVariable;
+            }
+            else
+            {
+                _itemCooldown += Time.deltaTime;
+            }
             yield return null;
         }
     }
@@ -252,5 +270,27 @@ public class MeleeWeapon : Item
     private void ResetLineRenderer()
     {
         _lineRenderer.positionCount = 0;
+    }
+
+    public float GetMeleeRange()
+    {
+        return _itemSO.ItemRange;
+    }
+
+    private IEnumerator DashToTarget()
+    {
+        float elapsedTime = 0f;
+        while(elapsedTime < 0.5f)
+        {
+            if(!_enemyItem)
+            {
+                elapsedTime += Time.deltaTime;
+            }
+            else
+            {
+                elapsedTime += Time.deltaTime * _timeVariable;
+            }
+            yield return null;
+        }
     }
 }
