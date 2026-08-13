@@ -24,6 +24,7 @@ public abstract class Item : MonoBehaviour
     public virtual void UseItem(){}
     public virtual void ThrowItem(){}
     public virtual void DropItem(){}
+    public virtual void PickUpItem(){}
     
   
   
