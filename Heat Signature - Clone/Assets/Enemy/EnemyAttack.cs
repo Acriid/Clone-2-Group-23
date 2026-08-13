@@ -40,13 +40,12 @@ public class EnemyAttack : MonoBehaviour
         }
         else
         {
+            Debug.Log("Shooting is called ");
            // PerformShootAttack();
-           if (shootTimer >= shootCooldown)
-           {
-               shootTimer = 0f;
-               Vector2 directionToPlayer = (fov.playerRef.transform.position - Aim.position).normalized;
-               longAttack.ShootBulletEnemy(directionToPlayer);
-           }
+           Vector2 directionToPlayer = (fov.playerRef.transform.position - Aim.position).normalized;
+              // longAttack.ShootBulletEnemy(directionToPlayer);
+              longAttack.UseItem(directionToPlayer);
+            //  Debug.Log("Shooting is called ");
            
         }
     }

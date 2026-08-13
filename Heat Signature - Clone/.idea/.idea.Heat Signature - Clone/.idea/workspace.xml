@@ -4,7 +4,8 @@
     <list default="true" id="769ae523-8973-4b1e-9bf8-90bc8ee3e3dc" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Heat Signature - Clone/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Heat Signature - Clone/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Enemy/EnemyAttack.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Enemy/EnemyAttack.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Input/InputActions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Input/InputActions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Enemy Scene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Enemy Scene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/TimeTest Scene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/TimeTest Scene.unity" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,6 +90,7 @@
       <updated>1786134555987</updated>
       <workItem from="1786134559984" duration="375000" />
       <workItem from="1786198492395" duration="1690000" />
+      <workItem from="1786615712682" duration="2686000" />
     </task>
     <servers />
   </component>
