@@ -15,12 +15,20 @@ public class Enemy : MonoBehaviour
     private NavMeshAgent agent;
     private Rigidbody2D rb;
 
-    [Header("Weapon Functionality")] 
+    [Header("Weapon Functionality")]
     public Transform aim;
     public bool isWalking = false;
 
     [Header("Facing correct direction")]
     public float rotationSpeed = 10f; // how quickly it turns to face movement, 0 = instant
+
+    [Header("Making Enemy Idle")]
+    public bool isEnemyIdle;
+
+    [Header("Detection")]
+    public FieldOfView fov;
+    public float chaseSpeed = 4f;
+    private float defaultSpeed;
 
     private void Awake()
     {
@@ -34,6 +42,8 @@ public class Enemy : MonoBehaviour
         agent.updateRotation = false;
         agent.updateUpAxis = false;
 
+        defaultSpeed = agent.speed;
+
         health = maxHealth;
 
         // Null Check
@@ -41,7 +51,7 @@ public class Enemy : MonoBehaviour
         {
             Debug.Log("Assign patrol points!");
         }
-        else
+        else if (!isEnemyIdle)
         {
             agent.SetDestination(patrolPoints[currentPointIndex].position);
         }
@@ -49,11 +59,13 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-        // Sets enemy to walk along patrol points
-        if (patrolPoints.Length > 0 && !agent.pathPending && agent.remainingDistance < 0.1f)
+        if (isEnemyIdle)
         {
-            currentPointIndex = (currentPointIndex + 1) % patrolPoints.Length;
-            agent.SetDestination(patrolPoints[currentPointIndex].position);
+            HandleIdleBehaviour();
+        }
+        else
+        {
+            HandlePatrolBehaviour();
         }
 
         // Determine if actually moving based on agent's velocity
@@ -62,6 +74,33 @@ public class Enemy : MonoBehaviour
         if (isWalking)
         {
             FaceMovementDirection();
+        }
+    }
+
+    private void HandleIdleBehaviour()
+    {
+        if (fov != null && fov.canSeePlayer)
+        {
+            // Player spotted — chase them
+            agent.speed = chaseSpeed;
+            agent.SetDestination(fov.playerRef.transform.position);
+        }
+        else
+        {
+            // Stay idle, don't move
+            agent.speed = 0f;
+            agent.SetDestination(transform.position);
+        }
+    }
+
+    private void HandlePatrolBehaviour()
+    {
+        agent.speed = defaultSpeed;
+
+        if (patrolPoints.Length > 0 && !agent.pathPending && agent.remainingDistance < 0.1f)
+        {
+            currentPointIndex = (currentPointIndex + 1) % patrolPoints.Length;
+            agent.SetDestination(patrolPoints[currentPointIndex].position);
         }
     }
 
