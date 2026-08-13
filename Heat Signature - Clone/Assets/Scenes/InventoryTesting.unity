@@ -286,6 +286,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIManager
   _inventoryPanel: {fileID: 1997008630}
+  _inventory: {fileID: 809073943}
+  _itemButtons:
+  - {fileID: 845167733}
+  - {fileID: 1546141720}
+  - {fileID: 1768652552}
+  - {fileID: 1198982635}
+  - {fileID: 542768745}
+  - {fileID: 1085662644}
+  - {fileID: 1832600067}
+  - {fileID: 94631350}
+  _itemSprites:
+  - {fileID: 845167734}
+  - {fileID: 1546141721}
+  - {fileID: 1768652553}
+  - {fileID: 1198982636}
+  - {fileID: 542768746}
+  - {fileID: 1085662645}
+  - {fileID: 1832600068}
+  - {fileID: 94631351}
+  _itemNames:
+  - {fileID: 12705828}
+  - {fileID: 596595141}
+  - {fileID: 2139387457}
+  - {fileID: 1736811879}
+  - {fileID: 390438342}
+  - {fileID: 1520542985}
+  - {fileID: 618561321}
+  - {fileID: 546498552}
   _itemInformationPanel: {fileID: 651206398}
   _itemType: {fileID: 0}
   _itemName: {fileID: 2106478479}
@@ -634,8 +662,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 27062051}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: ShowSlipstreamInformation
-        m_Mode: 1
+        m_MethodName: ShowItemInformationForSlot
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -699,7 +727,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &151086964
 RectTransform:
   m_ObjectHideFlags: 0
@@ -774,7 +802,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &156079854
 RectTransform:
   m_ObjectHideFlags: 0
@@ -849,7 +877,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &200622624
 RectTransform:
   m_ObjectHideFlags: 0
@@ -924,7 +952,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &259891728
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1599,8 +1627,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 27062051}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: ShowVisitorInformation
-        m_Mode: 1
+        m_MethodName: ShowItemInformationForSlot
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1801,7 +1829,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &571830575
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2190,14 +2218,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Hold the button to aim your dash, release to strike.
-
-
-    Longblades
-    are silent and have no knockback.
-
-
-'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2294,7 +2315,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &651206399
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2531,7 +2552,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 1306469917}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -2756,8 +2777,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 27062051}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: ShowLongbladeInformation
-        m_Mode: 1
+        m_MethodName: ShowItemInformationForSlot
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3090,9 +3111,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '8m Dash
-
-    0.4s Cooldown'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3395,8 +3414,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 27062051}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: ShowSidewinderInformation
-        m_Mode: 1
+        m_MethodName: ShowItemInformationForSlot
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3460,7 +3479,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1132549545
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3647,8 +3666,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 27062051}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: ShowGunInformation
-        m_Mode: 1
+        m_MethodName: ShowItemInformationForSlot
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4046,6 +4065,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GunTest
   _itemSO: {fileID: 11400000, guid: 663de1a3459b9f9429fec14efecd86c0, type: 2}
   _inventory: {fileID: 809073943}
+  _itemInformationPanel: {fileID: 651206398}
+  _parentObject: {fileID: 1198982633}
+  _enemyItem: 0
+  _timeManager: {fileID: 0}
 --- !u!61 &1306469918
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4630,8 +4653,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 27062051}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: ShowConcussionHammerInformation
-        m_Mode: 1
+        m_MethodName: ShowItemInformationForSlot
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4832,7 +4855,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1621934921
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5414,7 +5437,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1765360243
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5558,8 +5581,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 27062051}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: ShowShortbladeInformation
-        m_Mode: 1
+        m_MethodName: ShowItemInformationForSlot
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -5623,7 +5646,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1769044986
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5904,8 +5927,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 27062051}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: ShowSwapperInformation
-        m_Mode: 1
+        m_MethodName: ShowItemInformationForSlot
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -6167,7 +6190,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1997008631
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6822,7 +6845,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Longblade
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

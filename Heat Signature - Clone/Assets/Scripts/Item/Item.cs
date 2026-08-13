@@ -10,6 +10,15 @@ public abstract class Item : MonoBehaviour
     // Inventory that will receive this item.
     [SerializeField] private Inventory _inventory;
     [SerializeField] private GameObject _itemInformationPanel;
+    [SerializeField] protected GameObject _parentObject;
+    
+
+    //Time Manager
+    [SerializeField] protected bool _enemyItem = false;
+    [SerializeField] protected TimeManager _timeManager = null;
+
+
+    protected float _timeVariable = 1f;
     
 
     //Public getter and setter for _itemSO
@@ -24,63 +33,35 @@ public abstract class Item : MonoBehaviour
     public virtual void UseItem(){}
     public virtual void ThrowItem(){}
     public virtual void DropItem(){}
-    
-  
-  /// These functions are simple,so from here on will be deleted once ive worked on the gadget machenic on picking the object.
-    // Picks up this item.
 
-    void Start()
-    {
-        _inventory = FindFirstObjectByType<Inventory>();
-    }
-
-    //it checks if E was pressed and that the item was picked up.
-     private void Update()
-    {
-        if (Keyboard.current != null &&
-            Keyboard.current.eKey.wasPressedThisFrame)
-        {
-            PickUpItem();
-        }
-    }
+     // Called when the player clicks the item.
     public virtual void PickUpItem()
     {
-         if (_inventory == null)
+        if (_inventory == null)
         {
-            Debug.LogWarning("No Inventory found in the scene.");
+            Debug.LogWarning("Inventory is not assigned to " + gameObject.name);
             return;
         }
 
-        if (_itemSO == null)
+        bool added = _inventory.AddItem(this);
+
+        if (added)
         {
-            Debug.LogWarning("No ItemSO assigned to this item.");
-            return;
-        }
+            Debug.Log(gameObject.name + " picked up!");
 
-        bool itemAdded = _inventory.AddItem(this);
-
-        if (itemAdded)
-        {
-            Debug.Log("Item picked up.");
-
-            // Hide the world object.
+            // Remove the item from the world.
             gameObject.SetActive(false);
         }
         else
         {
-            Debug.Log("Inventory is full.");
+            Debug.LogWarning("Inventory is full!");
         }
-    
     }
 
-    // Checks if the mouse is hovering over the item.
-    private void OnMouseOver()
+    // Left-click the item to pick it up.
+    private void OnMouseDown()
     {
-        if (Keyboard.current != null &&
-            Keyboard.current.eKey.wasPressedThisFrame)
-        {
-            PickUpItem();
-        }
+        PickUpItem();
     }
 
 }

@@ -4,9 +4,6 @@ using UnityEngine;
 public class Slipstream : Item
 {
     private static WaitForSeconds _waitForSeconds10 = new(10f);
-
-
-    [SerializeField] private TimeManager _timeManager;
     [SerializeField] private float _playerTime = 1.75f;
     [SerializeField] private float _otherTime = 0.1f;
 
@@ -30,12 +27,14 @@ public class Slipstream : Item
     private IEnumerator UseSlipstream()
     {
         _inUse = true;
+        if(_timeManager != null)
         _timeManager.ChangeGameTime(_playerTime,_otherTime);
 
         yield return _waitForSeconds10;
 
         //Changes everything back to default time
         _inUse = false;
+        if(_timeManager != null)
         _timeManager.ChangeGameTime(1f);
         
     }
