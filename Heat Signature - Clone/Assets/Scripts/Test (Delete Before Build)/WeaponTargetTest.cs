@@ -4,10 +4,10 @@ using UnityEngine.InputSystem;
 public class WeaponTargetTest : MonoBehaviour
 {
     public MeleeWeapon Weapon;
-    private bool _usingWeapon = true;
+    private bool _usingWeapon = false;
     void Start()
     {
-        Weapon.UseItem();
+        Weapon.ThrowItem();
     }
 
     void Update()
@@ -17,9 +17,9 @@ public class WeaponTargetTest : MonoBehaviour
 
     private void ThrowCheck()
     {
-        if(Keyboard.current.spaceKey.wasPressedThisFrame)
+        if(Keyboard.current.mKey.wasPressedThisFrame)
         {
-            Weapon.UseItem();
+            Weapon.ThrowItem();
             _usingWeapon = !_usingWeapon;
             Debug.Log($"Using weapon: {_usingWeapon}");
         }        

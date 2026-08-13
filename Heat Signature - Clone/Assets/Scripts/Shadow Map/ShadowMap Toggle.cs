@@ -8,7 +8,6 @@ public class ShadowMapToggle : MonoBehaviour
     [SerializeField] private InputReader _inputReader;
     [SerializeField] private TimeManager _timeManager;
     [SerializeField] private GameObject _shadowMapCanvas;
-    public event Action<bool> OnShadowMapToggle;
     private bool _shadowMapToggled = false;
 
     private Coroutine _shadowMapRoutine = null;
@@ -47,25 +46,26 @@ public class ShadowMapToggle : MonoBehaviour
 
         if(!_shadowMapToggled)
         {
+            //Coroutine
             if(_shadowMapRoutine != null)
             {
                 StopCoroutine(_shadowMapRoutine);
                 _shadowMapRoutine = null;
-            }           
+            }     
+
+            _inputReader.EnableInteractAction();
         }
         else
         {
-            //Quick toggle check
+            //Coroutine
             if(_shadowMapRoutine != null)
             {
                 StopCoroutine(_shadowMapRoutine);
             }
             _shadowMapRoutine = StartCoroutine(StopShadowMap());
+
+            _inputReader.DisableInteractAction();
         }
-
-
-
-        OnShadowMapToggle?.Invoke(_shadowMapToggled);
     }
 
     private void ChangeTimeVariable(float newValue)
