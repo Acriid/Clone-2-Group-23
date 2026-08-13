@@ -11,6 +11,7 @@ public abstract class Item : MonoBehaviour
     [SerializeField] private Inventory _inventory;
     [SerializeField] private GameObject _itemInformationPanel;
     [SerializeField] protected GameObject _parentObject;
+    
 
     //Time Manager
     [SerializeField] protected bool _enemyItem = false;
@@ -32,11 +33,35 @@ public abstract class Item : MonoBehaviour
     public virtual void UseItem(){}
     public virtual void ThrowItem(){}
     public virtual void DropItem(){}
-    public virtual void PickUpItem(){}
-    
-  
-  
-     
-   
+
+     // Called when the player clicks the item.
+    public virtual void PickUpItem()
+    {
+        if (_inventory == null)
+        {
+            Debug.LogWarning("Inventory is not assigned to " + gameObject.name);
+            return;
+        }
+
+        bool added = _inventory.AddItem(this);
+
+        if (added)
+        {
+            Debug.Log(gameObject.name + " picked up!");
+
+            // Remove the item from the world.
+            gameObject.SetActive(false);
+        }
+        else
+        {
+            Debug.LogWarning("Inventory is full!");
+        }
+    }
+
+    // Left-click the item to pick it up.
+    private void OnMouseDown()
+    {
+        PickUpItem();
+    }
 
 }
