@@ -182,10 +182,12 @@ MonoBehaviour:
   _itemSO: {fileID: 11400000, guid: 1f620401d3df2de49b151d300a15db76, type: 2}
   _inventory: {fileID: 0}
   _itemInformationPanel: {fileID: 0}
+  _parentObject: {fileID: 0}
+  _enemyItem: 0
+  _timeManager: {fileID: 11400000, guid: b375a5a6240b68f4bbd62571c4e2c830, type: 2}
   _bulletPoolSize: 3
   _bullet: {fileID: 2189404069569578541, guid: 19da01928415f334c9b7aff218ef6db7, type: 3}
   _shotStartPosition: {fileID: 156305084}
-  _timeManager: {fileID: 11400000, guid: b375a5a6240b68f4bbd62571c4e2c830, type: 2}
 --- !u!212 &156305087
 SpriteRenderer:
   serializedVersion: 3
@@ -280,6 +282,8 @@ MonoBehaviour:
   _itemSO: {fileID: 11400000, guid: 54365047c154c4943a4420017f0ab3c8, type: 2}
   _inventory: {fileID: 0}
   _itemInformationPanel: {fileID: 0}
+  _parentObject: {fileID: 0}
+  _enemyItem: 0
   _timeManager: {fileID: 11400000, guid: b375a5a6240b68f4bbd62571c4e2c830, type: 2}
   _playerTime: 1.75
   _otherTime: 0.1
