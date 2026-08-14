@@ -15,6 +15,10 @@ public class Enemy : MonoBehaviour
     private NavMeshAgent agent;
     private Rigidbody2D rb;
 
+
+    public TimeManager TimeManager;
+    private float _timeVariable = 1f;
+
     [Header("Weapon Functionality")]
     public Transform aim;
     public bool isWalking = false;
@@ -35,6 +39,20 @@ public class Enemy : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
+    void OnEnable()
+    {
+        if(TimeManager != null)
+        {
+            TimeManager.OnEnemyTimeChange += OnTimeChange;
+        }
+    }
+    void OnDisable()
+    {
+        if(TimeManager != null)
+        {
+            TimeManager.OnEnemyTimeChange -= OnTimeChange;
+        }        
+    }
     void Start()
     {
         // Setting up agent
@@ -82,20 +100,20 @@ public class Enemy : MonoBehaviour
         if (fov != null && fov.canSeePlayer)
         {
             // Player spotted — chase them
-            agent.speed = chaseSpeed;
+            ChangeAgentSpeed(chaseSpeed);
             agent.SetDestination(fov.playerRef.transform.position);
         }
         else
         {
             // Stay idle, don't move
-            agent.speed = 0f;
+            ChangeAgentSpeed(0f);
             agent.SetDestination(transform.position);
         }
     }
 
     private void HandlePatrolBehaviour()
     {
-        agent.speed = defaultSpeed;
+        ChangeAgentSpeed(defaultSpeed);
 
         if (patrolPoints.Length > 0 && !agent.pathPending && agent.remainingDistance < 0.1f)
         {
@@ -129,5 +147,17 @@ public class Enemy : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    private void OnTimeChange(float newValue)
+    {
+        _timeVariable = newValue;
+
+        ChangeAgentSpeed(agent.speed);
+    }
+
+    private void ChangeAgentSpeed(float newSpeed)
+    {
+        agent.speed = newSpeed * _timeVariable;
     }
 }
