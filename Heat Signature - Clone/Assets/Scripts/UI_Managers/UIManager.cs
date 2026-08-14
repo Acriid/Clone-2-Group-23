@@ -5,34 +5,24 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    // =========================
-    // INVENTORY
-    // =========================
+    // Inventory
 
     [Header("Inventory")]
+
     [SerializeField] private GameObject _inventoryPanel;
     [SerializeField] private Inventory _inventory;
 
 
-    // =========================
-    // INVENTORY SLOT UI
-    // =========================
+    // Inventory Slots
 
     [Header("Inventory Slots")]
 
-    // The buttons for Slot 1 - Slot 8.
     [SerializeField] private Button[] _itemButtons = new Button[8];
-
-    // The Image components inside Slot 1 - Slot 8.
     [SerializeField] private Image[] _itemSprites = new Image[8];
-
-    // The text components inside Slot 1 - Slot 8.
     [SerializeField] private TMP_Text[] _itemNames = new TMP_Text[8];
 
 
-    // =========================
-    // ITEM INFORMATION PANEL
-    // =========================
+    // Item Information Panel
 
     [Header("Item Information Panel")]
 
@@ -44,47 +34,36 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TMP_Text _itemEffect;
 
 
-    // =========================
-    // START
-    // =========================
+    // Start
 
     private void Start()
     {
-        // Hide the inventory when the game starts.
         if (_inventoryPanel != null)
         {
             _inventoryPanel.SetActive(false);
         }
 
-        // Hide the item information panel when the game starts.
         HideItemInformation();
 
-        // Make sure the inventory UI starts empty.
         UpdateInventoryDisplay();
     }
 
 
-    // =========================
-    // UPDATE
-    // =========================
+    // Update
 
     private void Update()
     {
-        // Press SPACE to open/close inventory.
         if (Keyboard.current != null &&
             Keyboard.current.spaceKey.wasPressedThisFrame)
         {
             ToggleInventory();
         }
 
-        // Keep the inventory UI updated.
         UpdateInventoryDisplay();
     }
 
 
-    // =========================
-    // INVENTORY TOGGLE
-    // =========================
+    // Inventory Toggle
 
     public void ToggleInventory()
     {
@@ -97,23 +76,18 @@ public class UIManager : MonoBehaviour
 
         _inventoryPanel.SetActive(!inventoryIsOpen);
 
-        // If closing inventory, hide item information.
         if (inventoryIsOpen)
         {
             HideItemInformation();
         }
-
-        // Update the inventory whenever it opens.
-        if (!inventoryIsOpen)
+        else
         {
             UpdateInventoryDisplay();
         }
     }
 
 
-    // =========================
-    // UPDATE INVENTORY DISPLAY
-    // =========================
+    // Update Inventory Display
 
     private void UpdateInventoryDisplay()
     {
@@ -126,26 +100,22 @@ public class UIManager : MonoBehaviour
         {
             Item item = _inventory.GetItem(i);
 
-            // -------------------------
-            // EMPTY SLOT
-            // -------------------------
+
+            // Empty Slot
 
             if (item == null)
             {
-                // Remove the name.
                 if (_itemNames[i] != null)
                 {
                     _itemNames[i].text = "";
                 }
 
-                // Hide the sprite.
                 if (_itemSprites[i] != null)
                 {
-                    _itemSprites[i].enabled = false;
                     _itemSprites[i].sprite = null;
+                    _itemSprites[i].enabled = false;
                 }
 
-                // Empty slot cannot be clicked.
                 if (_itemButtons[i] != null)
                 {
                     _itemButtons[i].interactable = false;
@@ -153,19 +123,23 @@ public class UIManager : MonoBehaviour
 
                 continue;
             }
-            // ITEM EXISTS
-    
+
+
+            // Item Exists
+
             string itemName = GetItemName(item);
 
 
-            // Show item name.
+            // Show Name
+
             if (_itemNames[i] != null)
             {
                 _itemNames[i].text = itemName;
             }
 
 
-            // Show the item's actual sprite.
+            // Show Sprite
+
             if (_itemSprites[i] != null)
             {
                 if (item.ItemSO != null &&
@@ -184,7 +158,8 @@ public class UIManager : MonoBehaviour
             }
 
 
-            // Allow the slot to be clicked.
+            // Enable Button
+
             if (_itemButtons[i] != null)
             {
                 _itemButtons[i].interactable = true;
@@ -192,7 +167,8 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    // GET ITEM NAME
+
+    // Get Item Name
 
     private string GetItemName(Item item)
     {
@@ -201,199 +177,121 @@ public class UIManager : MonoBehaviour
             return "";
         }
 
-        string objectName = item.gameObject.name.ToLower();
-
-
-        if (objectName.Contains("longblade"))
+        if (item.ItemSO != null &&
+            !string.IsNullOrEmpty(item.ItemSO.ItemName))
         {
-            return "LONGBLADE";
+            return item.ItemSO.ItemName.ToUpper();
         }
 
-        if (objectName.Contains("concussion"))
-        {
-            return "CONCUSSION HAMMER";
-        }
-
-        if (objectName.Contains("shortblade"))
-        {
-            return "SHORTBLADE";
-        }
-
-        if (objectName.Contains("gun"))
-        {
-            return "GUN";
-        }
-
-        if (objectName.Contains("visitor"))
-        {
-            return "VISITOR";
-        }
-
-        if (objectName.Contains("sidewinder"))
-        {
-            return "SIDEWINDER";
-        }
-
-        if (objectName.Contains("swapper"))
-        {
-            return "SWAPPER";
-        }
-
-        if (objectName.Contains("slipstream"))
-        {
-            return "SLIPSTREAM";
-        }
-
-
-        // If none of the names match,
-        // use the actual GameObject name.
-        return item.gameObject.name;
+        return item.gameObject.name.ToUpper();
     }
 
 
-    // CLICK INVENTORY SLOT
+    // Visitor Information
 
-    public void ShowItemInformationForSlot(int slotIndex)
+    public void ShowVisitorInformation()
     {
-        if (_inventory == null)
-        {
-            return;
-        }
-
-        if (slotIndex < 0 || slotIndex >= 8)
-        {
-            return;
-        }
-
-        Item item = _inventory.GetItem(slotIndex);
-
-
-        // Nothing in this slot.
-        if (item == null)
-        {
-            HideItemInformation();
-            return;
-        }
-
-
-        // Check which item was actually picked up.
-        string itemName = GetItemName(item);
-
-
-        switch (itemName)
-        {
-            case "LONGBLADE":
-
-                ShowItemInformation(
-                    "Melee",
-                    "LONGBLADE",
-                    "Hold the button to aim your dash, release to strike.",
-                    "8m Dash\n0.4s Cooldown\nQuiet Strike"
-                );
-
-                break;
-
-
-            case "CONCUSSION HAMMER":
-
-                ShowItemInformation(
-                    "Melee",
-                    "CONCUSSION HAMMER",
-                    "Hold the button to aim your dash, release to strike.",
-                    "8m Dash\nVery Short Recovery\nHigh Knockback"
-                );
-
-                break;
-
-
-            case "SHORTBLADE":
-
-                ShowItemInformation(
-                    "Melee",
-                    "SHORTBLADE",
-                    "Aim at a nearby target to strike automatically.",
-                    "2m Dash\nVery Short Recovery"
-                );
-
-                break;
-
-
-            case "GUN":
-
-                ShowItemInformation(
-                    "Firearm",
-                    "GUN",
-                    "Hold the button to aim your shot, release to fire.",
-                    "Infinite Range\n1s per Shot"
-                );
-
-                break;
-
-
-            case "VISITOR":
-
-                ShowItemInformation(
-                    "Teleporter",
-                    "VISITOR",
-                    "Hold the button to choose a destination, release to teleport.",
-                    "Returns to original position\n1 second"
-                );
-
-                break;
-
-
-            case "SIDEWINDER":
-
-                ShowItemInformation(
-                    "Teleporter",
-                    "SIDEWINDER",
-                    "Hold the button to choose a destination, release to teleport.",
-                    "Requires a Direct Path"
-                );
-
-                break;
-
-
-            case "SWAPPER":
-
-                ShowItemInformation(
-                    "Teleporter",
-                    "SWAPPER",
-                    "Hold the button to select a target, release to swap positions.",
-                    "Target: Enemy\nPermanent Swap"
-                );
-
-                break;
-
-
-            case "SLIPSTREAM":
-
-                ShowItemInformation(
-                    "Gadget",
-                    "SLIPSTREAM",
-                    "Hold the button to activate.",
-                    "Time: 10x Slower\nMovement: 5x Faster\nDuration: 10s"
-                );
-
-                break;
-
-
-            default:
-
-                // Unknown item.
-                ShowItemInformation(
-                    "",
-                    itemName,
-                    "",
-                    ""
-                );
-
-                break;
-        }
+        ShowItemInformation(
+            "Teleporter",
+            "VISITOR",
+            "Teleport to a selected location and return to your original position.",
+            "Returns to original position\n2 second timer"
+        );
     }
 
 
-    // SHOW INFORMATION
+    // Sidewinder Information
+
+    public void ShowSidewinderInformation()
+    {
+        ShowItemInformation(
+            "Teleporter",
+            "SIDEWINDER",
+            "Teleport to a selected location while following a direct path.",
+            "Requires a Direct Path"
+        );
+    }
+
+
+    // Swapper Information
+
+    public void ShowSwapperInformation()
+    {
+        ShowItemInformation(
+            "Teleporter",
+            "SWAPPER",
+            "Select a target and swap positions with it.",
+            "Target: Enemy\nPermanent Swap"
+        );
+    }
+
+
+    // Slipstream Information
+
+    public void ShowSlipstreamInformation()
+    {
+        ShowItemInformation(
+            "Gadget",
+            "SLIPSTREAM",
+            "Activate Slipstream to temporarily change time and movement.",
+            "Time: 10x Slower\nMovement: 5x Faster\nDuration: 10s"
+        );
+    }
+
+
+    // Longblade Information
+
+    public void ShowLongbladeInformation()
+    {
+        ShowItemInformation(
+            "Melee",
+            "LONGBLADE",
+            "Hold the button to aim your dash, then release to strike.",
+            "8m Dash\n0.4s Cooldown\nQuiet Strike"
+        );
+    }
+
+
+    // Concussion Hammer Information
+
+    public void ShowConcussionHammerInformation()
+    {
+        ShowItemInformation(
+            "Melee",
+            "CONCUSSION HAMMER",
+            "Hold the button to aim your dash, then release to strike.",
+            "8m Dash\nVery Short Recovery\nHigh Knockback"
+        );
+    }
+
+
+    // Shortblade Information
+
+    public void ShowShortbladeInformation()
+    {
+        ShowItemInformation(
+            "Melee",
+            "SHORTBLADE",
+            "Aim at a nearby target to perform a short dash attack.",
+            "2m Dash\nVery Short Recovery"
+        );
+    }
+
+
+    // Gun Information
+
+    public void ShowGunInformation()
+    {
+        ShowItemInformation(
+            "Firearm",
+            "GUN",
+            "Hold the button to aim your shot, then release to fire.",
+            "Infinite Range\n1s per Shot"
+        );
+    }
+
+
+    // Show Information
 
     private void ShowItemInformation(
         string itemType,
@@ -428,7 +326,7 @@ public class UIManager : MonoBehaviour
     }
 
 
-    // HIDE INFORMATION
+    // Hide Information
 
     public void HideItemInformation()
     {
@@ -438,7 +336,8 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    // TOGGLE INFORMATION
+
+    // Toggle Information
 
     public void ToggleItemInformationPanel()
     {
