@@ -5,11 +5,6 @@ public class WeaponTargetTest : MonoBehaviour
 {
     public MeleeWeapon Weapon;
     private bool _usingWeapon = false;
-    void Start()
-    {
-        Weapon.ThrowItem();
-    }
-
     void Update()
     {
         ThrowCheck();
@@ -19,7 +14,7 @@ public class WeaponTargetTest : MonoBehaviour
     {
         if(Keyboard.current.mKey.wasPressedThisFrame)
         {
-            Weapon.ThrowItem();
+            Weapon.UseItem();
             _usingWeapon = !_usingWeapon;
             Debug.Log($"Using weapon: {_usingWeapon}");
         }        

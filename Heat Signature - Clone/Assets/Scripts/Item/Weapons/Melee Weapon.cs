@@ -108,7 +108,7 @@ public class MeleeWeapon : Item
             return;
         }
 
-        //TODO - Move character towards target over time and test if weapon hit.
+        StartCoroutine(DashToTarget(_target));
 
         //Reset variables
         if(_targetRoutine != null)
@@ -130,6 +130,15 @@ public class MeleeWeapon : Item
         StartCoroutine(CooldownClock());
 
     }
+
+    public void UseItem(GameObject target)
+    {
+        if(_itemCooldown < _itemSO.ItemCooldown) return;
+
+        StartCoroutine(DashToTarget(target));
+
+        StartCoroutine(CooldownClock());
+    }
     /// <summary>
     /// ThrowItem is called twice, once to get the where you throw, twice to throw
     /// </summary>
@@ -147,6 +156,7 @@ public class MeleeWeapon : Item
         //Second use Throw
         if(_throwLine != Vector2.zero)
         {
+            _weaponRigidBody.bodyType = RigidbodyType2D.Dynamic;
             ApplyForce(_throwLine);
             _throwLine = Vector2.zero;
         }
@@ -174,6 +184,7 @@ public class MeleeWeapon : Item
     {
         //Remove item from ground and put item into inventory
         base.PickUpItem();
+        _weaponRigidBody.bodyType = RigidbodyType2D.Kinematic;
     }
 
 
@@ -304,7 +315,7 @@ public class MeleeWeapon : Item
             _weaponRigidBody.linearVelocity = _velocity;
         }
         _linearDampeningRoutine = null;
-        Debug.Log("stopped");
+        _weaponRigidBody.bodyType = RigidbodyType2D.Kinematic;
     }
 
     private void ResetLineRenderer()
@@ -317,10 +328,13 @@ public class MeleeWeapon : Item
         return _itemSO.ItemRange;
     }
 
-    private IEnumerator DashToTarget()
+    private IEnumerator DashToTarget(GameObject target)
     {
+        Vector2 startPosition = _parentObject.transform.position;
+        Vector2 movePosition = target.transform.position;
+        float moveTime = 0.15f;
         float elapsedTime = 0f;
-        while(elapsedTime < 0.5f)
+        while(elapsedTime < moveTime)
         {
             if(!_enemyItem)
             {
@@ -330,6 +344,15 @@ public class MeleeWeapon : Item
             {
                 elapsedTime += Time.deltaTime * _timeVariable;
             }
+
+
+            float t = Mathf.Clamp01(elapsedTime / moveTime);
+
+            _parentObject.transform.position = Vector2.Lerp(
+                startPosition,
+                movePosition,
+                t);
+
             yield return null;
         }
     }
