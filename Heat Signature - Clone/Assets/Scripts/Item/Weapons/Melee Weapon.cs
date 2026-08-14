@@ -32,7 +32,11 @@ public class MeleeWeapon : Item
 
     //Find target Coroutine variables
     private Coroutine _throwRoutine = null;
+    private Coroutine _linearDampeningRoutine = null;
     private Vector2 _throwLine = new();
+
+
+    private float _dampening = 1f;
 
 
     //Main camera Cache
@@ -63,11 +67,19 @@ public class MeleeWeapon : Item
     void OnDisable()
     {
         if(_timeManager != null)
-        _timeManager.OnEnemyTimeChange += ChangeTimeVariable;
+        _timeManager.OnEnemyTimeChange -= ChangeTimeVariable;
     }
     private void ChangeTimeVariable(float newValue)
     {
+        if(!Mathf.Approximately(_timeVariable,1f))
+        {
+            _velocity /= _timeVariable;
+        }
+
         _timeVariable = newValue;
+        _velocity *= _timeVariable;
+
+        _weaponRigidBody.linearVelocity = _velocity;
     }
     /// <summary>
     /// UseItem is called twice, once to find a target, twice to act upon target found
@@ -221,15 +233,17 @@ public class MeleeWeapon : Item
             Vector2 mousePosition = _mainPointer.position.ReadValue();
             Vector2 mouseWorldPosition = _mainCamera.ScreenToWorldPoint(mousePosition);
             //Get throw direction
-            _throwLine = mouseWorldPosition-origin;
+            
 
             float mouseDistance = Vector2.Distance(origin, mouseWorldPosition);
 
-            if(mouseDistance > _itemSO.ItemRange)
+            if(mouseDistance > _itemSO.ItemRange )
             {
                 mouseWorldPosition = origin + (mouseWorldPosition - origin).normalized * _itemSO.ItemRange;
             }
 
+            _throwLine = mouseWorldPosition-origin;
+            _throwLine = _itemSO.ItemRange  * _throwLine.normalized;
 
             //Show thrown line
             pointPositions[0] = origin;
@@ -258,13 +272,39 @@ public class MeleeWeapon : Item
         }
     }
 
+
+    //Variable to go over unity's auto Physics.
+    private Vector2 _velocity = Vector2.zero;
     /// <summary>
     /// Throws the object in the direction given
     /// </summary>
     /// <param name="direction">Direction to throw object</param>
     public void ApplyForce(Vector2 direction)
     {
-        _weaponRigidBody.AddForce(direction * THROWFORCE,ForceMode2D.Impulse);
+        _velocity = _timeVariable * THROWFORCE * direction;
+        _weaponRigidBody.linearVelocity = _velocity;
+        
+        if(_linearDampeningRoutine == null)
+        {
+            _linearDampeningRoutine = StartCoroutine(ApplyLinearDamping());
+        }
+        else
+        {
+            StopCoroutine(_linearDampeningRoutine);
+            _linearDampeningRoutine = StartCoroutine(ApplyLinearDamping());
+        }
+    }
+
+    private IEnumerator ApplyLinearDamping()
+    {
+        while (_weaponRigidBody.linearVelocity.sqrMagnitude > (0.0001f * _timeVariable))
+        {
+            yield return new WaitForFixedUpdate();
+            _velocity *= 1.0f / (1.0f + Time.fixedDeltaTime * _dampening * _timeVariable);
+            _weaponRigidBody.linearVelocity = _velocity;
+        }
+        _linearDampeningRoutine = null;
+        Debug.Log("stopped");
     }
 
     private void ResetLineRenderer()
@@ -292,5 +332,17 @@ public class MeleeWeapon : Item
             }
             yield return null;
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (!collision.gameObject.CompareTag("Wall")) return;
+
+
+        Vector2 wallNormal = collision.GetContact(0).normal;
+
+        _velocity = Vector2.Reflect(_velocity, wallNormal);
+
+        _weaponRigidBody.linearVelocity = _velocity;
     }
 }

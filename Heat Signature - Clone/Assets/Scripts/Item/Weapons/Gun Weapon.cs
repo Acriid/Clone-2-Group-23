@@ -86,6 +86,7 @@ public class GunWeapon : Item
 
         StartCoroutine(CooldownClock());
     }
+    
     public void UseItem(Vector2 shootDirection)
     {
         //Quick return checks
