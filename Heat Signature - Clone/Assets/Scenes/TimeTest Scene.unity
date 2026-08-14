@@ -147,11 +147,11 @@ Transform:
   m_GameObject: {fileID: 156305083}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.42, y: -0.15, z: 0}
+  m_LocalPosition: {x: 0.82276, y: -0.28177, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1815939814}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &156305085
 MonoBehaviour:
@@ -710,7 +710,7 @@ GameObject:
   - component: {fileID: 1815939812}
   - component: {fileID: 1815939811}
   m_Layer: 0
-  m_Name: 'TestPlayer '
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -831,8 +831,7 @@ Transform:
   m_LocalPosition: {x: 0.40276, y: -0.13177, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 156305084}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1827237434
@@ -953,3 +952,4 @@ SceneRoots:
   - {fileID: 1827237436}
   - {fileID: 7058383841978204762}
   - {fileID: 1630300867}
+  - {fileID: 156305084}

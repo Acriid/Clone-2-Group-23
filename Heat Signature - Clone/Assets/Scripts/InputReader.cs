@@ -10,6 +10,7 @@ public class InputReader : ScriptableObject
     private InputActions _inputActions;   
     private InputAction _moveAction;
     private InputAction _leftClickAction;
+    private InputAction _rightClickAction;
     private InputAction _spaceAction;
     private InputAction _interactAction;
     #endregion
@@ -17,6 +18,7 @@ public class InputReader : ScriptableObject
     #region public Event Action Variables
     public event Action<Vector2> OnMove;
     public event Action OnLeftClick;
+    public event Action OnRightClick;
     public event Action OnSpace;
     public event Action OnInteract;
     #endregion
@@ -26,6 +28,7 @@ public class InputReader : ScriptableObject
     private Action<InputAction.CallbackContext> moveCancelled; 
 
     private Action<InputAction.CallbackContext> leftClickPerformed;
+    private Action<InputAction.CallbackContext> rightClickPerformed;
 
     private Action<InputAction.CallbackContext> spacePerformed;
 
@@ -52,6 +55,7 @@ public class InputReader : ScriptableObject
         _moveAction = _inputActions.Player.Move;
 
         _leftClickAction = _inputActions.UI.Click;
+        _rightClickAction = _inputActions.UI.RightClick;
 
         _spaceAction = _inputActions.Player.Jump;
 
@@ -63,6 +67,7 @@ public class InputReader : ScriptableObject
         moveCancelled = ctx => OnMove?.Invoke(Vector2.zero);
 
         leftClickPerformed = ctx => OnLeftClick?.Invoke();
+        rightClickPerformed = ctx => OnRightClick?.Invoke();
 
         spacePerformed = ctx => OnSpace?.Invoke();
 
@@ -77,6 +82,7 @@ public class InputReader : ScriptableObject
         
 
         _leftClickAction.performed += leftClickPerformed;
+        _rightClickAction.performed += rightClickPerformed;
 
         _spaceAction.performed += spacePerformed;
 
@@ -88,6 +94,7 @@ public class InputReader : ScriptableObject
         _moveAction.canceled -= moveCancelled;
 
         _leftClickAction.performed -= leftClickPerformed;
+        _rightClickAction.performed -= rightClickPerformed;
 
         _spaceAction.performed -= spacePerformed;
 
@@ -114,6 +121,14 @@ public class InputReader : ScriptableObject
     public void DisableClickAction()
     {
         _leftClickAction.Disable();
+    }
+    public void EnableRightClickAction()
+    {
+        _rightClickAction.Enable();
+    }
+    public void DisableRightClickAction()
+    {
+        _rightClickAction.Disable();
     }
     #endregion
     #region Space action
