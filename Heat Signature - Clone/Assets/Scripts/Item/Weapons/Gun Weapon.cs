@@ -107,7 +107,7 @@ public class GunWeapon : Item
             return;
         }
 
-        ShootBulletEnemy(shootDirection);
+        ShootBullet(shootDirection);
 
 
         if(_bulletPathRoutine != null)
@@ -136,18 +136,7 @@ public class GunWeapon : Item
             yield return null;
         }
     }
-
-    public void ShootBulletEnemy(Vector2 shootDirection)
-    {
-        Bullet instance = _bulletPool.Get();
-
-        _activeBullets.Add(instance);
-
-        instance.OnBulletRemoved += ReturnBullet;
-        instance.ShootBullet(_shotStartPosition.position,shootDirection);
-        instance.ChangeBulletTime(_bulletTimeScale);
-    }
-    
+  
     private void ShootBullet(Vector2 shootDirection)
     {
         Bullet instance = _bulletPool.Get();

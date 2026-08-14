@@ -21,6 +21,7 @@ public class FieldOfView : MonoBehaviour
 
     void Start()
     {
+        if(playerRef == null)
         playerRef = GameObject.FindGameObjectWithTag("Player");
         //Need to tag actual/ final player 
         StartCoroutine(FOVRoutine());

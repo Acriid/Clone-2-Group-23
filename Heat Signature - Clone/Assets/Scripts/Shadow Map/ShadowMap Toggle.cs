@@ -8,6 +8,7 @@ public class ShadowMapToggle : MonoBehaviour
     [SerializeField] private InputReader _inputReader;
     [SerializeField] private TimeManager _timeManager;
     [SerializeField] private GameObject _shadowMapCanvas;
+    [SerializeField] private GameObject _playerRef;
     private bool _shadowMapToggled = false;
 
     private Coroutine _shadowMapRoutine = null;
@@ -18,20 +19,32 @@ public class ShadowMapToggle : MonoBehaviour
     void OnEnable()
     {
         //Input Reader
-        _inputReader.EnableSpaceAction();
-        _inputReader.OnSpace += ToggleShadowMap;
+        if(_inputReader != null)
+        {
+            _inputReader.EnableSpaceAction();
+            _inputReader.OnSpace += ToggleShadowMap;
+        }
 
         //Time Manager
-        _timeManager.OnBulletTimeChange += ChangeTimeVariable;
+        if(_timeManager != null)
+        {
+            _timeManager.OnBulletTimeChange += ChangeTimeVariable;
+        }
     }
     void OnDisable()
     {
         //Input Reader
-        _inputReader.DisableSpaceAction();
-        _inputReader.OnSpace -= ToggleShadowMap;
+        if(_inputReader != null)
+        {
+            _inputReader.DisableSpaceAction();
+            _inputReader.OnSpace -= ToggleShadowMap;
+        }
 
         //Time Manager
-        _timeManager.OnBulletTimeChange -= ChangeTimeVariable;
+        if(_timeManager != null)
+        {
+            _timeManager.OnBulletTimeChange -= ChangeTimeVariable;
+        }
     }
 
     private void ToggleShadowMap()
@@ -54,6 +67,9 @@ public class ShadowMapToggle : MonoBehaviour
             }     
 
             _inputReader.EnableInteractAction();
+
+            _playerRef.layer = LayerMask.NameToLayer("Player");
+            _playerRef.tag = "Player";
         }
         else
         {
@@ -65,6 +81,10 @@ public class ShadowMapToggle : MonoBehaviour
             _shadowMapRoutine = StartCoroutine(StopShadowMap());
 
             _inputReader.DisableInteractAction();
+
+            //Make player "Invisible" to map interactions
+            _playerRef.layer = LayerMask.NameToLayer("Default");
+            _playerRef.tag = "Untagged";
         }
     }
 

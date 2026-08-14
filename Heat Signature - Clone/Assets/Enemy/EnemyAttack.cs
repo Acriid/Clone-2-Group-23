@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
@@ -23,18 +24,20 @@ public class EnemyAttack : MonoBehaviour
 
         if (distance <= shortAttack.GetMeleeRange())
         {
-            //PerformMeleeAttack();
+            longAttack.gameObject.SetActive(false);
+            shortAttack.gameObject.SetActive(true);
             //Call player melee swing/ attack animation here 
             shortAttack.UseItem(fov.playerRef);
         }
         else
         {
-            Debug.Log("Shooting is called ");
-           // PerformShootAttack();
-           Vector2 directionToPlayer = (fov.playerRef.transform.position - Aim.position).normalized;
-              // longAttack.ShootBulletEnemy(directionToPlayer);
-              longAttack.UseItem(directionToPlayer);
-            //  Debug.Log("Shooting is called ");
+            shortAttack.gameObject.SetActive(false);
+            longAttack.gameObject.SetActive(true);
+   
+            Vector2 directionToPlayer = (fov.playerRef.transform.position - transform.position).normalized;
+
+            longAttack.UseItem(directionToPlayer);
+
            
         }
     }
