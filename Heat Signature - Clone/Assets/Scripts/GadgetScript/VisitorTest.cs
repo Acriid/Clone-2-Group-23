@@ -2,13 +2,13 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class VisitorTest : MonoBehaviour
+public class VisitorTest : Item
 {
-    [Header("Teleport Destinations")]
-    [SerializeField] private Transform[] teleportDestinations;
 
     [Header("Visitor Settings")]
     [SerializeField] private float visitDuration = 2f;
+    [SerializeField] private LayerMask _floorMask;
+    [SerializeField] private GameObject _playerRef;
 
     private Camera mainCamera;
 
@@ -21,19 +21,9 @@ public class VisitorTest : MonoBehaviour
         mainCamera = Camera.main;
     }
 
-    private void Update()
+    public override void UseItem()
     {
-        // Left mouse click
-        if (Mouse.current != null &&
-            Mouse.current.leftButton.wasPressedThisFrame &&
-            !isVisiting)
-        {
-            CheckForDestination();
-        }
-    }
-
-    private void CheckForDestination()
-    {
+        if(isVisiting) return;
         if (mainCamera == null)
         {
             Debug.LogWarning("Main Camera was not found.");
@@ -52,47 +42,43 @@ public class VisitorTest : MonoBehaviour
             )
         );
 
+        Vector2 raycastDirection = (mainCamera.transform.position - worldPosition).normalized;
+
+        Debug.Log(worldPosition);
+
         // Check what the mouse clicked
         RaycastHit2D hit = Physics2D.Raycast(
-            worldPosition,
-            Vector2.zero
+            mainCamera.transform.position,
+            raycastDirection,
+            Mathf.Infinity,
+            _floorMask
         );
 
-        if (hit.collider == null)
+        if (!hit.collider.CompareTag("Ground"))
         {
+            Debug.Log("Did not hit");
             return;
         }
 
-        Transform clickedObject = hit.collider.transform;
-
-        // Check if the clicked object is one of our destinations
-        for (int i = 0; i < teleportDestinations.Length; i++)
-        {
-            if (teleportDestinations[i] == clickedObject)
-            {
-                StartCoroutine(VisitDestination(clickedObject));
-                return;
-            }
-        }
+        Debug.Log(hit.collider.name);
+        StartCoroutine(VisitDestination(worldPosition));
     }
 
-    private IEnumerator VisitDestination(Transform destination)
+    private IEnumerator VisitDestination(Vector2 destination)
     {
         isVisiting = true;
 
         // Remember where the player originally was
-        originalPosition = transform.position;
+        originalPosition = _playerRef.transform.position;
 
         // Teleport to selected destination
-        transform.position = destination.position;
-
-        Debug.Log("Visitor activated. Teleported to " + destination.name);
+        _playerRef.transform.position = destination;
 
         // Stay there for 2 seconds
         yield return new WaitForSeconds(visitDuration);
 
         // Return to original position
-        transform.position = originalPosition;
+        _playerRef.transform.position = originalPosition;
 
         Debug.Log("Visitor finished. Returned to original position.");
 
