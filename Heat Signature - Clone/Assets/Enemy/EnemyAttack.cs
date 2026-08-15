@@ -31,6 +31,8 @@ public class EnemyAttack : MonoBehaviour
         }
         else
         {
+            Debug.Log("Shooting");
+
             shortAttack.gameObject.SetActive(false);
             longAttack.gameObject.SetActive(true);
    
