@@ -366,7 +366,7 @@ GameObject:
   m_Component:
   - component: {fileID: 14984346}
   - component: {fileID: 14984345}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: InventorySystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -509,7 +509,7 @@ GameObject:
   m_Component:
   - component: {fileID: 25430160}
   - component: {fileID: 25430159}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: UIManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2514,7 +2514,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 339912449}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PickUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24043,9 +24043,9 @@ GameObject:
   - component: {fileID: 1294859477}
   - component: {fileID: 1294859476}
   - component: {fileID: 1294859481}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: 'Player '
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
