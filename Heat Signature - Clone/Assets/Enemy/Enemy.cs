@@ -1,3 +1,6 @@
+using System;
+using System.Collections;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -7,8 +10,8 @@ public class Enemy : MonoBehaviour
 
     // Public Variables
     public Transform[] patrolPoints;
-    public float health = 3f;
-    public float maxHealth = 3f;
+    public float health = 1f;
+    public float maxHealth = 1f;
 
     // Private Variables
     private int currentPointIndex = 0;
@@ -33,6 +36,12 @@ public class Enemy : MonoBehaviour
     public FieldOfView fov;
     public float chaseSpeed = 4f;
     private float defaultSpeed;
+
+    public event Action<Enemy> OnPatrolEnd;
+    public event Action<Enemy> OnEnemyKilled;
+
+    private bool _isPatroling = false;
+    private bool _isChasing = false;
 
     private void Awake()
     {
@@ -77,11 +86,12 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-        if (isEnemyIdle)
+        HandleChaseBehavior();
+        if (isEnemyIdle && !_isChasing)
         {
             HandleIdleBehaviour();
         }
-        else
+        else if(!isEnemyIdle && !_isChasing)
         {
             HandlePatrolBehaviour();
         }
@@ -97,17 +107,24 @@ public class Enemy : MonoBehaviour
 
     private void HandleIdleBehaviour()
     {
+        // Stay idle, don't move
+        ChangeAgentSpeed(0f);
+        agent.SetDestination(transform.position);
+
+    }
+
+    private void HandleChaseBehavior()
+    {
         if (fov != null && fov.canSeePlayer)
         {
             // Player spotted — chase them
             ChangeAgentSpeed(chaseSpeed);
             agent.SetDestination(fov.playerRef.transform.position);
+            _isChasing = true;
         }
         else
         {
-            // Stay idle, don't move
-            ChangeAgentSpeed(0f);
-            agent.SetDestination(transform.position);
+            _isChasing = false;
         }
     }
 
@@ -115,13 +132,30 @@ public class Enemy : MonoBehaviour
     {
         ChangeAgentSpeed(defaultSpeed);
 
+
+
         if (patrolPoints.Length > 0 && !agent.pathPending && agent.remainingDistance < 0.1f)
         {
+            if(currentPointIndex == 0 && !_isPatroling)
+            {
+                OnPatrolEnd?.Invoke(this);
+                SetIsIdle(true);
+                return;
+            }
+
+
+
             currentPointIndex = (currentPointIndex + 1) % patrolPoints.Length;
+
+            if(currentPointIndex == patrolPoints.Count() -1)
+            {
+                _isPatroling = false;
+            }
+
             agent.SetDestination(patrolPoints[currentPointIndex].position);
+
         }
     }
-
     private void FaceMovementDirection()
     {
         Vector2 moveDir = agent.velocity;
@@ -145,6 +179,7 @@ public class Enemy : MonoBehaviour
         health -= damage;
         if (health <= 0)
         {
+            OnEnemyKilled?.Invoke(this);
             Destroy(gameObject);
         }
     }
@@ -153,11 +188,25 @@ public class Enemy : MonoBehaviour
     {
         _timeVariable = newValue;
 
-        ChangeAgentSpeed(agent.speed);
+        ChangeAgentSpeed(defaultSpeed);
     }
 
     private void ChangeAgentSpeed(float newSpeed)
     {
         agent.speed = newSpeed * _timeVariable;
+    }
+
+    public void SetPatrolPoints(Transform[] newPoints)
+    {
+        Array.Copy(newPoints,patrolPoints,newPoints.Length);
+    }
+    public void SetIsIdle(bool newValue)
+    {
+        isEnemyIdle = newValue;
+    }
+    public void Patrol()
+    {
+        _isPatroling = true;
+        SetIsIdle(false);
     }
 }
