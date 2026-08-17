@@ -359,13 +359,38 @@ public class MeleeWeapon : Item
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (!collision.gameObject.CompareTag("Wall")) return;
+        if(_parentObject.CompareTag("Enemy"))
+        {
+            if(collision.gameObject.CompareTag("Player"))
+            {
+                if(collision.collider.TryGetComponent<PlayerHealth>(out PlayerHealth component))
+                {
+                    component.TakeDamage();
+                }
+            }
+            
+        }
+        else
+        {
+            if(collision.collider.CompareTag("Enemy"))
+            {
+                //Todo kill enemy
+                if(collision.collider.TryGetComponent<Enemy>(out Enemy component))
+                {
+                    component.TakeDamage(1f);
+                }
+            }   
+        }
 
 
-        Vector2 wallNormal = collision.GetContact(0).normal;
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            Vector2 wallNormal = collision.GetContact(0).normal;
 
-        _velocity = Vector2.Reflect(_velocity, wallNormal);
+            _velocity = Vector2.Reflect(_velocity, wallNormal);
 
-        _weaponRigidBody.linearVelocity = _velocity;
+            _weaponRigidBody.linearVelocity = _velocity;
+        }
+
     }
 }

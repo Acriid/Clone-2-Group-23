@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7492485677555391879}
   - component: {fileID: 1639822074274772513}
   m_Layer: 0
-  m_Name: Bullet
+  m_Name: Enemy Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -170,5 +170,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ff6e9843fd25de47937cf1e80f4455c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bullet
-  _bulletSO: {fileID: 11400000, guid: adb62b4f01172394c914df60e4cc27d7, type: 2}
+  _bulletSO: {fileID: 11400000, guid: c0cf3a1ab05e98f439e931312471778e, type: 2}
   _bulletRigidBody: {fileID: 5184157387579811980}

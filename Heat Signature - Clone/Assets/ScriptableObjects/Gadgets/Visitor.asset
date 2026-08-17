@@ -17,6 +17,6 @@ MonoBehaviour:
   ItemDescription: 
   ItemEffect: 
   ItemInventorySprite: {fileID: -6948787942599193411, guid: 6f5db54f56e6d764d9eae9b36d78412e, type: 3}
-  ItemRange: 0
+  ItemRange: 8
   ItemCooldown: 0
-  ItemUsage: -1
+  ItemUsage: 1

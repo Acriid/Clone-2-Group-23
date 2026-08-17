@@ -26,6 +26,10 @@ public class Bullet : MonoBehaviour
             if(collision.collider.CompareTag("Enemy"))
             {
                 //Todo kill enemy
+                if(collision.collider.TryGetComponent<Enemy>(out Enemy component))
+                {
+                    component.TakeDamage(1f);
+                }
             }   
         }
         else
@@ -33,9 +37,16 @@ public class Bullet : MonoBehaviour
             if (collision.collider.CompareTag("Player"))
             {
                 //Todo kill player
+                if(collision.collider.TryGetComponent<PlayerHealth>(out PlayerHealth component))
+                {
+                    component.TakeDamage();
+                }
             }
         }
-
+        
+        StopCoroutine(_despawnRoutine);
+        _despawnRoutine = null;
+        OnBulletRemoved?.Invoke(this);
         //Can Add a window check if needed. To break windows.
 
     }   
