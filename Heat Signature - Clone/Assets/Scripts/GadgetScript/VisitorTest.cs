@@ -4,46 +4,70 @@ using UnityEngine.InputSystem;
 
 public class VisitorTest : MonoBehaviour
 {
-    [Header("Teleport Destinations")]
-    [SerializeField] private Transform[] teleportDestinations;
-
     [Header("Visitor Settings")]
     [SerializeField] private float visitDuration = 2f;
+
+    [Header("Player")]
+    [SerializeField] private Transform player;
 
     private Camera mainCamera;
 
     private Vector3 originalPosition;
 
+    private bool visitorActive = false;
     private bool isVisiting = false;
 
     private void Start()
     {
         mainCamera = Camera.main;
+
+        if (player == null)
+        {
+            player = transform;
+        }
     }
 
     private void Update()
     {
-        // Left mouse click
+        if (!visitorActive || isVisiting)
+        {
+            return;
+        }
+
         if (Mouse.current != null &&
-            Mouse.current.leftButton.wasPressedThisFrame &&
-            !isVisiting)
+            Mouse.current.leftButton.wasPressedThisFrame)
         {
             CheckForDestination();
         }
+    }
+
+    public void UseVisitor()
+    {
+        if (isVisiting)
+        {
+            return;
+        }
+
+        visitorActive = true;
+
+        Debug.Log("Visitor activated. Click a destination.");
     }
 
     private void CheckForDestination()
     {
         if (mainCamera == null)
         {
+            mainCamera = Camera.main;
+        }
+
+        if (mainCamera == null)
+        {
             Debug.LogWarning("Main Camera was not found.");
             return;
         }
 
-        // Get mouse position
         Vector2 mousePosition = Mouse.current.position.ReadValue();
 
-        // Convert mouse position from screen space to world space
         Vector3 worldPosition = mainCamera.ScreenToWorldPoint(
             new Vector3(
                 mousePosition.x,
@@ -52,47 +76,35 @@ public class VisitorTest : MonoBehaviour
             )
         );
 
-        // Check what the mouse clicked
-        RaycastHit2D hit = Physics2D.Raycast(
-            worldPosition,
-            Vector2.zero
-        );
+        Collider2D hit = Physics2D.OverlapPoint(worldPosition);
 
-        if (hit.collider == null)
+        if (hit == null)
         {
             return;
         }
 
-        Transform clickedObject = hit.collider.transform;
-
-        // Check if the clicked object is one of our destinations
-        for (int i = 0; i < teleportDestinations.Length; i++)
+        if (!hit.CompareTag("VisitorDestination"))
         {
-            if (teleportDestinations[i] == clickedObject)
-            {
-                StartCoroutine(VisitDestination(clickedObject));
-                return;
-            }
+            return;
         }
+
+        StartCoroutine(VisitDestination(hit.transform));
     }
 
     private IEnumerator VisitDestination(Transform destination)
     {
         isVisiting = true;
+        visitorActive = false;
 
-        // Remember where the player originally was
-        originalPosition = transform.position;
+        originalPosition = player.position;
 
-        // Teleport to selected destination
-        transform.position = destination.position;
+        player.position = destination.position;
 
         Debug.Log("Visitor activated. Teleported to " + destination.name);
 
-        // Stay there for 2 seconds
         yield return new WaitForSeconds(visitDuration);
 
-        // Return to original position
-        transform.position = originalPosition;
+        player.position = originalPosition;
 
         Debug.Log("Visitor finished. Returned to original position.");
 
