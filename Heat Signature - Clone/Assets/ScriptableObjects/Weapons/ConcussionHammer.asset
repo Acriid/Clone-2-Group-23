@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c37ad2d3f2889cc40a69bc766ab523b3, type: 3}
-  m_Name: GunItemSO
+  m_Name: ConcussionHammer
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
   ItemName: 
   ItemType: 
-  ItemDescription: Hold the button to aim your shot, release to fire.
+  ItemDescription: 
   ItemEffect: 
-  ItemInventorySprite: {fileID: 2610557496064248451, guid: 6f5db54f56e6d764d9eae9b36d78412e, type: 3}
-  ItemRange: 0
+  ItemInventorySprite: {fileID: 0}
+  ItemRange: 8
   ItemCooldown: 0
   ItemUsage: -1

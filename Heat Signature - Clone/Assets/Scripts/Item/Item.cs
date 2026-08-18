@@ -2,15 +2,23 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
+    [Header("Item Data")]
     [SerializeField] protected ItemSO _itemSO;
+
+    [Header("Inventory")]
     [SerializeField] private Inventory _inventory;
+
+    [Header("UI")]
     [SerializeField] private GameObject _itemInformationPanel;
+
+    [Header("Item")]
     [SerializeField] protected GameObject _parentObject;
 
+    [Header("Enemy Item")]
     [SerializeField] protected bool _enemyItem = false;
-    [SerializeField] protected TimeManager _timeManager = null;
 
-    [SerializeField] private VisitorTest _visitorTest;
+    [Header("Time")]
+    [SerializeField] protected TimeManager _timeManager;
 
     protected float _timeVariable = 1f;
 
@@ -26,6 +34,8 @@ public class Item : MonoBehaviour
         set { _itemInformationPanel = value; }
     }
 
+    // This is the base UseItem function.
+    // Individual items can override this.
     public virtual void UseItem()
     {
         if (_itemSO == null)
@@ -34,47 +44,17 @@ public class Item : MonoBehaviour
             return;
         }
 
-        string itemName = _itemSO.ItemName.ToUpper();
-
-        if (_visitorTest == null)
-        {
-            Debug.LogWarning(
-                "VisitorTest is not assigned to " + gameObject.name
-            );
-
-            return;
-        }
-
-        switch (itemName)
-        {
-            case "VISITOR":
-                _visitorTest.UseVisitor();
-                break;
-
-            case "SIDEWINDER":
-                _visitorTest.UseSidewinder();
-                break;
-
-            case "SWAPPER":
-                _visitorTest.UseSwapper();
-                break;
-
-            case "SLIPSTREAM":
-                _visitorTest.UseSlipstream();
-                break;
-
-            default:
-                Debug.Log("Using item: " + itemName);
-                break;
-        }
+        Debug.Log("Using item: " + _itemSO.ItemName);
     }
 
     public virtual void ThrowItem()
     {
+        Debug.Log("Throwing item: " + GetItemName());
     }
 
     public virtual void DropItem()
     {
+        Debug.Log("Dropping item: " + GetItemName());
     }
 
     public virtual void PickUpItem()
@@ -94,6 +74,7 @@ public class Item : MonoBehaviour
         {
             Debug.Log(GetItemName() + " picked up!");
 
+            // Hide the world item after picking it up.
             gameObject.SetActive(false);
         }
         else
@@ -102,12 +83,13 @@ public class Item : MonoBehaviour
         }
     }
 
+    // Allows the player to click the item in the world to pick it up.
     private void OnMouseDown()
     {
         PickUpItem();
     }
 
-    private string GetItemName()
+    protected string GetItemName()
     {
         if (_itemSO != null &&
             !string.IsNullOrEmpty(_itemSO.ItemName))

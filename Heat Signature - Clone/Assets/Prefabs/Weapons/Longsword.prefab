@@ -85,7 +85,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
+  m_Sprite: {fileID: 8175494680803468855, guid: 6f5db54f56e6d764d9eae9b36d78412e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -112,7 +112,7 @@ Rigidbody2D:
   m_LinearDamping: 1
   m_AngularDamping: 0.7
   m_GravityScale: 0
-  m_Material: {fileID: 6200000, guid: b76f05809ed97174293e92df1e7cd818, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -160,8 +160,8 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.28866667}
-    oldSize: {x: 1, y: 1}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.91, y: 0.34}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -186,13 +186,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MeleeWeapon
   _itemSO: {fileID: 11400000, guid: 47bdab347b0c21b46a86c293b36d417b, type: 2}
+  _inventory: {fileID: 0}
+  _itemInformationPanel: {fileID: 0}
+  _parentObject: {fileID: 0}
+  _enemyItem: 0
+  _timeManager: {fileID: 0}
   _findTargetWaitTime: 0.2
-  _throwRoutineWaitTime: 0.2
   _weaponRigidBody: {fileID: 5690486215470150716}
   _weaponCollider: {fileID: 3139036854744409828}
   _targetLayerMask:
     serializedVersion: 2
-    m_Bits: 16
+    m_Bits: 64
   _lineRenderer: {fileID: 6940399438664092460}
   _bounceLayerMask:
     serializedVersion: 2

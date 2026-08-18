@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class SidewinderTest : MonoBehaviour
+public class SidewinderTest : Item
 {
     [Header("Player")]
     [SerializeField] private Transform player;
@@ -37,7 +37,7 @@ public class SidewinderTest : MonoBehaviour
         }
     }
 
-    public void UseSidewinder()
+    public override void UseItem()
     {
         sidewinderActive = true;
 

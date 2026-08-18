@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class SwapperTest : MonoBehaviour
+public class SwapperTest : Item
 {
     [Header("Player")]
     [SerializeField] private Transform player;
@@ -37,7 +37,7 @@ public class SwapperTest : MonoBehaviour
         }
     }
 
-    public void UseSwapper()
+    public override void UseItem()
     {
         swapperActive = true;
 

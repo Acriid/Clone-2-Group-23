@@ -4,11 +4,20 @@ public class Inventory : MonoBehaviour
 {
     private const int INVENTORY_SIZE = 8;
 
+    [Header("Inventory Slots")]
     [SerializeField]
     private Item[] _inventorySlots = new Item[INVENTORY_SIZE];
 
+    [Header("Starting Gadgets")]
     [SerializeField]
     private Item[] _startingGadgets = new Item[4];
+
+    [Header("Primary / Secondary")]
+    [SerializeField]
+    private Item _primaryItem;
+
+    [SerializeField]
+    private Item _secondaryItem;
 
     private void Start()
     {
@@ -21,13 +30,15 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    // Inventory slots
+    // -------------------------
+    // INVENTORY
+    // -------------------------
+
     public Item[] InventorySlots
     {
         get { return _inventorySlots; }
     }
 
-    // Add item
     public bool AddItem(Item item)
     {
         if (item == null)
@@ -52,7 +63,6 @@ public class Inventory : MonoBehaviour
         return false;
     }
 
-    // Move item
     public void MoveItem(int fromSlot, int toSlot)
     {
         if (fromSlot < 0 || fromSlot >= INVENTORY_SIZE)
@@ -65,13 +75,26 @@ public class Inventory : MonoBehaviour
             return;
         }
 
-        Item item = _inventorySlots[fromSlot];
-
-        _inventorySlots[fromSlot] = _inventorySlots[toSlot];
-        _inventorySlots[toSlot] = item;
+        (_inventorySlots[toSlot], _inventorySlots[fromSlot]) = (_inventorySlots[fromSlot], _inventorySlots[toSlot]);
     }
-
-    // Get item
+    public void EnableSlot(int activeSlot)
+    {
+        Item item = _inventorySlots[activeSlot];
+        item.gameObject.SetActive(true);
+        if(item.gameObject.TryGetComponent<Rigidbody2D>(out Rigidbody2D rb))
+        {
+            rb.bodyType = RigidbodyType2D.Kinematic;
+        }
+    }
+    public void DisableSlot(int activeSlot)
+    {
+        Item item = _inventorySlots[activeSlot];
+        item.gameObject.SetActive(false);
+        if(item.gameObject.TryGetComponent<Rigidbody2D>(out Rigidbody2D rb))
+        {
+            rb.bodyType = RigidbodyType2D.Dynamic;
+        }
+    }
     public Item GetItem(int slotIndex)
     {
         if (slotIndex < 0 || slotIndex >= INVENTORY_SIZE)
@@ -82,19 +105,26 @@ public class Inventory : MonoBehaviour
         return _inventorySlots[slotIndex];
     }
 
-    // Get Slot 1 item
-    public Item GetLeftClickItem()
-    {
-        return _inventorySlots[0];
-    }
+    // -------------------------
+    // PRIMARY
+    // -------------------------
 
-    // Get Slot 2 item
-    public Item GetRightClickItem()
-    {
-        return _inventorySlots[1];
-    }
 
-    // Get item name
+    // -------------------------
+    // SECONDARY
+    // -------------------------
+
+
+
+    // -------------------------
+    // STASH
+    // -------------------------
+
+
+    // -------------------------
+    // ITEM NAME
+    // -------------------------
+
     private string GetItemName(Item item)
     {
         if (item == null)

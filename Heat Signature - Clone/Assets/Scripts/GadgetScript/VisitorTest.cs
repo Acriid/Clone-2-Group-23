@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class VisitorTest : MonoBehaviour
+public class VisitorTest : Item
 {
     [Header("Player")]
     [SerializeField] private Transform player;
@@ -23,10 +23,33 @@ public class VisitorTest : MonoBehaviour
 
         if (player == null)
         {
-            player = transform;
+            GameObject playerObject =
+                GameObject.FindGameObjectWithTag("Player");
+
+            if (playerObject != null)
+            {
+                player = playerObject.transform;
+            }
         }
     }
-
+    void OnEnable()
+    {
+        if(_timeManager != null)
+        {
+            _timeManager.OnEnemyTimeChange += OnTimeChange;
+        }
+    }
+    void OnDisable()
+    {
+        if(_timeManager != null)
+        {
+            _timeManager.OnEnemyTimeChange -= OnTimeChange;
+        }        
+    }
+    private void OnTimeChange(float newValue)
+    {
+        _timeVariable = newValue;
+    }
     private void Update()
     {
         if (!visitorActive || isVisiting)
@@ -41,7 +64,7 @@ public class VisitorTest : MonoBehaviour
         }
     }
 
-    public void UseVisitor()
+    public override void UseItem()
     {
         if (isVisiting)
         {
@@ -55,48 +78,6 @@ public class VisitorTest : MonoBehaviour
 
     private void CheckVisitorDestination()
     {
-        Collider2D hit = GetClickedCollider();
-
-        if (hit == null)
-        {
-            return;
-        }
-
-        if (!hit.CompareTag("VisitorDestination"))
-        {
-            Debug.Log("This is not a Visitor destination.");
-            return;
-        }
-
-        StartCoroutine(VisitDestination(hit.transform));
-    }
-
-    private IEnumerator VisitDestination(Transform destination)
-    {
-        isVisiting = true;
-        visitorActive = false;
-
-        originalPosition = player.position;
-
-        player.position = destination.position;
-
-        Debug.Log(
-            "Visitor teleported to " + destination.name
-        );
-
-        yield return new WaitForSeconds(visitorDuration);
-
-        player.position = originalPosition;
-
-        Debug.Log(
-            "Visitor returned to original position."
-        );
-
-        isVisiting = false;
-    }
-
-    private Collider2D GetClickedCollider()
-    {
         if (mainCamera == null)
         {
             mainCamera = Camera.main;
@@ -104,8 +85,8 @@ public class VisitorTest : MonoBehaviour
 
         if (mainCamera == null)
         {
-            Debug.LogWarning("Main Camera was not found.");
-            return null;
+            Debug.LogWarning("Visitor: Main Camera not found.");
+            return;
         }
 
         Vector2 mousePosition =
@@ -120,6 +101,80 @@ public class VisitorTest : MonoBehaviour
                 )
             );
 
-        return Physics2D.OverlapPoint(worldPosition);
+        Collider2D hit =
+            Physics2D.OverlapPoint(worldPosition);
+
+        if (hit == null)
+        {
+            Debug.Log("Visitor: No 2D collider clicked.");
+            return;
+        }
+
+        Debug.Log(
+            "Visitor clicked: " +
+            hit.gameObject.name +
+            " | Tag: " +
+            hit.gameObject.tag
+        );
+
+        if (!hit.CompareTag("VisitorDestination"))
+        {
+            Debug.Log(
+                "Visitor: " +
+                hit.gameObject.name +
+                " is not a VisitorDestination."
+            );
+
+            return;
+        }
+
+        Debug.Log("Visitor: Valid destination found!");
+
+        StartCoroutine(
+            VisitDestination(hit.transform)
+        );
+    }
+
+    private IEnumerator VisitDestination(
+        Transform destination
+    )
+    {
+        isVisiting = true;
+        visitorActive = false;
+
+        if (player == null)
+        {
+            Debug.LogWarning(
+                "Visitor: Player is not assigned."
+            );
+
+            isVisiting = false;
+            yield break;
+        }
+
+        originalPosition = player.position;
+
+        player.position = destination.position;
+
+        Debug.Log(
+            "Visitor teleported to " +
+            destination.name
+        );
+
+        float elapsedTime = 0f;
+        while(elapsedTime < visitorDuration)
+        {
+            elapsedTime += Time.deltaTime * _timeVariable;
+            yield return null;
+        }
+
+
+        player.position = originalPosition;
+
+        Debug.Log(
+            "Visitor returned to original position."
+        );
+
+        isVisiting = false;
     }
 }

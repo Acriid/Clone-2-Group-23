@@ -79,6 +79,7 @@ public class MeleeWeapon : Item
         _timeVariable = newValue;
         _velocity *= _timeVariable;
 
+        if(_weaponRigidBody != null)
         _weaponRigidBody.linearVelocity = _velocity;
     }
     /// <summary>
@@ -193,6 +194,7 @@ public class MeleeWeapon : Item
     /// </summary>
     private IEnumerator FindTarget()
     {
+        Debug.Log("WOW");
         WaitForSeconds waitTime = new(_findTargetWaitTime);
         Vector2 boxSize = new(ATTACKDETEACTIONWIDTH,ATTACKDETEACTIONWIDTH);
 

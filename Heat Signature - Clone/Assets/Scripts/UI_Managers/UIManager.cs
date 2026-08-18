@@ -303,4 +303,41 @@ public class UIManager : MonoBehaviour
             _itemInformationPanel.SetActive(true);
         }
     }
+
+    public void AssignPrimary(int slotIndex)
+{
+    if (_inventory == null)
+    {
+        return;
+    }
+    _inventory.DisableSlot(0);
+    _inventory.EnableSlot(slotIndex);
+    _inventory.MoveItem(slotIndex,0);
+
+    Item item = _inventory.InventorySlots[0];
+
+    if (item != null)
+    {
+        Debug.Log("UI: Primary assigned to " + GetItemName(item));
+    }
+}
+
+    public void AssignSecondary(int slotIndex)
+    {
+        if (_inventory == null)
+       {
+        return;
+       }
+        _inventory.DisableSlot(1);
+        _inventory.EnableSlot(slotIndex);
+        _inventory.MoveItem(slotIndex,1);
+
+
+        Item item = _inventory.InventorySlots[1];
+
+        if (item != null)
+        {
+           Debug.Log("UI: Secondary assigned to " + GetItemName(item));
+        }
+    }
 }

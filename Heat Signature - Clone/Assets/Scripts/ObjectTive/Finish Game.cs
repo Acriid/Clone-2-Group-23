@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class FinishGame : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class FinishGame : MonoBehaviour
         {
             if(_endCanvas != null)
             _endCanvas.SetActive(true);
+            else
+            SceneManager.LoadScene(0);
         }
     }
 }
