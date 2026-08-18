@@ -7,6 +7,7 @@ public class ShadowMapToggle : MonoBehaviour
 {
     [SerializeField] private InputReader _inputReader;
     [SerializeField] private TimeManager _timeManager;
+    [SerializeField] private UIManager _uiManager;
     [SerializeField] private GameObject _shadowMapCanvas;
     [SerializeField] private GameObject _playerRef;
     private bool _shadowMapToggled = false;
@@ -65,6 +66,9 @@ public class ShadowMapToggle : MonoBehaviour
                 StopCoroutine(_shadowMapRoutine);
                 _shadowMapRoutine = null;
             }     
+
+            if(_uiManager != null)
+            _uiManager.ToggleInventory();
 
             _inputReader.EnableInteractAction();
 
