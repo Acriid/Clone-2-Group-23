@@ -5,15 +5,11 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    // Inventory
-
     [Header("Inventory")]
 
     [SerializeField] private GameObject _inventoryPanel;
     [SerializeField] private Inventory _inventory;
 
-
-    // Inventory Slots
 
     [Header("Inventory Slots")]
 
@@ -21,8 +17,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Image[] _itemSprites = new Image[8];
     [SerializeField] private TMP_Text[] _itemNames = new TMP_Text[8];
 
-
-    // Item Information Panel
 
     [Header("Item Information Panel")]
 
@@ -33,8 +27,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TMP_Text _itemDescription;
     [SerializeField] private TMP_Text _itemEffect;
 
-
-    // Start
 
     private void Start()
     {
@@ -49,8 +41,6 @@ public class UIManager : MonoBehaviour
     }
 
 
-    // Update
-
     private void Update()
     {
         if (Keyboard.current != null &&
@@ -62,8 +52,6 @@ public class UIManager : MonoBehaviour
         UpdateInventoryDisplay();
     }
 
-
-    // Inventory Toggle
 
     public void ToggleInventory()
     {
@@ -87,8 +75,6 @@ public class UIManager : MonoBehaviour
     }
 
 
-    // Update Inventory Display
-
     private void UpdateInventoryDisplay()
     {
         if (_inventory == null)
@@ -98,10 +84,12 @@ public class UIManager : MonoBehaviour
 
         for (int i = 0; i < 8; i++)
         {
+            if (_itemButtons[i] == null)
+            {
+                continue;
+            }
+
             Item item = _inventory.GetItem(i);
-
-
-            // Empty Slot
 
             if (item == null)
             {
@@ -116,29 +104,17 @@ public class UIManager : MonoBehaviour
                     _itemSprites[i].enabled = false;
                 }
 
-                if (_itemButtons[i] != null)
-                {
-                    _itemButtons[i].interactable = false;
-                }
+                _itemButtons[i].interactable = false;
 
                 continue;
             }
 
-
-            // Item Exists
-
             string itemName = GetItemName(item);
-
-
-            // Show Name
 
             if (_itemNames[i] != null)
             {
                 _itemNames[i].text = itemName;
             }
-
-
-            // Show Sprite
 
             if (_itemSprites[i] != null)
             {
@@ -157,18 +133,10 @@ public class UIManager : MonoBehaviour
                 }
             }
 
-
-            // Enable Button
-
-            if (_itemButtons[i] != null)
-            {
-                _itemButtons[i].interactable = true;
-            }
+            _itemButtons[i].interactable = true;
         }
     }
 
-
-    // Get Item Name
 
     private string GetItemName(Item item)
     {
@@ -187,8 +155,6 @@ public class UIManager : MonoBehaviour
     }
 
 
-    // Visitor Information
-
     public void ShowVisitorInformation()
     {
         ShowItemInformation(
@@ -199,8 +165,6 @@ public class UIManager : MonoBehaviour
         );
     }
 
-
-    // Sidewinder Information
 
     public void ShowSidewinderInformation()
     {
@@ -213,8 +177,6 @@ public class UIManager : MonoBehaviour
     }
 
 
-    // Swapper Information
-
     public void ShowSwapperInformation()
     {
         ShowItemInformation(
@@ -225,8 +187,6 @@ public class UIManager : MonoBehaviour
         );
     }
 
-
-    // Slipstream Information
 
     public void ShowSlipstreamInformation()
     {
@@ -239,8 +199,6 @@ public class UIManager : MonoBehaviour
     }
 
 
-    // Longblade Information
-
     public void ShowLongbladeInformation()
     {
         ShowItemInformation(
@@ -251,8 +209,6 @@ public class UIManager : MonoBehaviour
         );
     }
 
-
-    // Concussion Hammer Information
 
     public void ShowConcussionHammerInformation()
     {
@@ -265,8 +221,6 @@ public class UIManager : MonoBehaviour
     }
 
 
-    // Shortblade Information
-
     public void ShowShortbladeInformation()
     {
         ShowItemInformation(
@@ -278,8 +232,6 @@ public class UIManager : MonoBehaviour
     }
 
 
-    // Gun Information
-
     public void ShowGunInformation()
     {
         ShowItemInformation(
@@ -290,8 +242,6 @@ public class UIManager : MonoBehaviour
         );
     }
 
-
-    // Show Information
 
     private void ShowItemInformation(
         string itemType,
@@ -326,8 +276,6 @@ public class UIManager : MonoBehaviour
     }
 
 
-    // Hide Information
-
     public void HideItemInformation()
     {
         if (_itemInformationPanel != null)
@@ -336,8 +284,6 @@ public class UIManager : MonoBehaviour
         }
     }
 
-
-    // Toggle Information
 
     public void ToggleItemInformationPanel()
     {
