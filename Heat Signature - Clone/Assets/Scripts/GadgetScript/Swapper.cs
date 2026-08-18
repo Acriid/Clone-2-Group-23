@@ -1,21 +1,17 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class VisitorTest : MonoBehaviour
+public class SwapperTest : MonoBehaviour
 {
     [Header("Player")]
     [SerializeField] private Transform player;
 
-    [Header("Visitor")]
-    [SerializeField] private float visitorDuration = 2f;
+    [Header("Swapper")]
+    [SerializeField] private float swapperRange = 20f;
 
     private Camera mainCamera;
 
-    private Vector3 originalPosition;
-
-    private bool visitorActive = false;
-    private bool isVisiting = false;
+    private bool swapperActive = false;
 
     private void Start()
     {
@@ -29,7 +25,7 @@ public class VisitorTest : MonoBehaviour
 
     private void Update()
     {
-        if (!visitorActive || isVisiting)
+        if (!swapperActive)
         {
             return;
         }
@@ -37,23 +33,20 @@ public class VisitorTest : MonoBehaviour
         if (Mouse.current != null &&
             Mouse.current.leftButton.wasPressedThisFrame)
         {
-            CheckVisitorDestination();
+            CheckSwapperTarget();
         }
     }
 
-    public void UseVisitor()
+    public void UseSwapper()
     {
-        if (isVisiting)
-        {
-            return;
-        }
+        swapperActive = true;
 
-        visitorActive = true;
-
-        Debug.Log("Visitor activated. Click a destination.");
+        Debug.Log(
+            "Swapper activated. Click a target."
+        );
     }
 
-    private void CheckVisitorDestination()
+    private void CheckSwapperTarget()
     {
         Collider2D hit = GetClickedCollider();
 
@@ -62,37 +55,43 @@ public class VisitorTest : MonoBehaviour
             return;
         }
 
-        if (!hit.CompareTag("VisitorDestination"))
+        if (!hit.CompareTag("SwapperTarget"))
         {
-            Debug.Log("This is not a Visitor destination.");
+            Debug.Log(
+                "This is not a Swapper target."
+            );
+
             return;
         }
 
-        StartCoroutine(VisitDestination(hit.transform));
-    }
-
-    private IEnumerator VisitDestination(Transform destination)
-    {
-        isVisiting = true;
-        visitorActive = false;
-
-        originalPosition = player.position;
-
-        player.position = destination.position;
-
-        Debug.Log(
-            "Visitor teleported to " + destination.name
+        float distance = Vector2.Distance(
+            player.position,
+            hit.transform.position
         );
 
-        yield return new WaitForSeconds(visitorDuration);
+        if (distance > swapperRange)
+        {
+            Debug.Log(
+                "Swapper target is too far away."
+            );
 
-        player.position = originalPosition;
+            return;
+        }
+
+        Vector3 targetPosition =
+            hit.transform.position;
+
+        hit.transform.position =
+            player.position;
+
+        player.position =
+            targetPosition;
+
+        swapperActive = false;
 
         Debug.Log(
-            "Visitor returned to original position."
+            "Swapper switched positions."
         );
-
-        isVisiting = false;
     }
 
     private Collider2D GetClickedCollider()
@@ -104,7 +103,10 @@ public class VisitorTest : MonoBehaviour
 
         if (mainCamera == null)
         {
-            Debug.LogWarning("Main Camera was not found.");
+            Debug.LogWarning(
+                "Main Camera was not found."
+            );
+
             return null;
         }
 
