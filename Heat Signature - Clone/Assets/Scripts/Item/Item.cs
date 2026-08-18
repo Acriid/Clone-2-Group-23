@@ -10,9 +10,10 @@ public class Item : MonoBehaviour
     [SerializeField] protected bool _enemyItem = false;
     [SerializeField] protected TimeManager _timeManager = null;
 
+    [SerializeField] private VisitorTest _visitorTest;
+
     protected float _timeVariable = 1f;
 
-    // ItemSO getter and setter
     public ItemSO ItemSO
     {
         get { return _itemSO; }
@@ -25,23 +26,57 @@ public class Item : MonoBehaviour
         set { _itemInformationPanel = value; }
     }
 
-    // Use item
     public virtual void UseItem()
     {
-        Debug.Log("Using item: " + GetItemName());
+        if (_itemSO == null)
+        {
+            Debug.LogWarning("ItemSO is not assigned to " + gameObject.name);
+            return;
+        }
+
+        string itemName = _itemSO.ItemName.ToUpper();
+
+        if (_visitorTest == null)
+        {
+            Debug.LogWarning(
+                "VisitorTest is not assigned to " + gameObject.name
+            );
+
+            return;
+        }
+
+        switch (itemName)
+        {
+            case "VISITOR":
+                _visitorTest.UseVisitor();
+                break;
+
+            case "SIDEWINDER":
+                _visitorTest.UseSidewinder();
+                break;
+
+            case "SWAPPER":
+                _visitorTest.UseSwapper();
+                break;
+
+            case "SLIPSTREAM":
+                _visitorTest.UseSlipstream();
+                break;
+
+            default:
+                Debug.Log("Using item: " + itemName);
+                break;
+        }
     }
 
-    // Throw item
     public virtual void ThrowItem()
     {
     }
 
-    // Drop item
     public virtual void DropItem()
     {
     }
 
-    // Pick up item
     public virtual void PickUpItem()
     {
         if (_inventory == null)
@@ -67,13 +102,11 @@ public class Item : MonoBehaviour
         }
     }
 
-    // Click world item
     private void OnMouseDown()
     {
         PickUpItem();
     }
 
-    // Get item name
     private string GetItemName()
     {
         if (_itemSO != null &&
